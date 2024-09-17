@@ -1,0 +1,466 @@
+{
+  "object_1": {
+    "id": 0,
+    "object_tag": "cup",
+    "object_caption": "A red and white patterned cup on a wooden desk.",
+    "bbox_extent": [
+      0.39,
+      0.31,
+      0.15
+    ],
+    "bbox_center": [
+      1.39,
+      -1.01,
+      0.82
+    ],
+    "bbox_volume": 0.02
+  },
+  "object_2": {
+    "id": 1,
+    "object_tag": "desk",
+    "object_caption": "A wooden desk with four legs and various items on it, placed in the corner of the room.",
+    "bbox_extent": [
+      1.5,
+      0.99,
+      1.04
+    ],
+    "bbox_center": [
+      1.64,
+      -1.28,
+      0.41
+    ],
+    "bbox_volume": 1.54
+  },
+  "object_3": {
+    "id": 2,
+    "object_tag": "basket",
+    "object_caption": "A red book placed on the desk.",
+    "bbox_extent": [
+      1.0,
+      0.62,
+      0.26
+    ],
+    "bbox_center": [
+      1.86,
+      -0.71,
+      0.73
+    ],
+    "bbox_volume": 0.16
+  },
+  "object_4": {
+    "id": 10,
+    "object_tag": "shoe",
+    "object_caption": "A single black and pink shoe placed on the desk.",
+    "bbox_extent": [
+      0.44,
+      0.15,
+      0.14
+    ],
+    "bbox_center": [
+      1.51,
+      -1.59,
+      0.79
+    ],
+    "bbox_volume": 0.01
+  },
+  "object_5": {
+    "id": 45,
+    "object_tag": "closet wall",
+    "object_caption": "A gray wall labeled as 'closet wall' on the left side of the image.",
+    "bbox_extent": [
+      1.77,
+      0.88,
+      0.0
+    ],
+    "bbox_center": [
+      1.99,
+      -1.69,
+      1.59
+    ],
+    "bbox_volume": 0.0
+  },
+  "object_6": {
+    "id": 76,
+    "object_tag": "storage bin",
+    "object_caption": "A gray storage bin with a partially open lid, placed on a wooden floor near the corner of the walls.",
+    "bbox_extent": [
+      0.47,
+      0.41,
+      0.45
+    ],
+    "bbox_center": [
+      0.04,
+      -1.84,
+      0.2
+    ],
+    "bbox_volume": 0.09
+  },
+  "object_7": {
+    "id": 87,
+    "object_tag": "shoe",
+    "object_caption": "A single shoe with purple and yellow details placed on top of a wooden surface.",
+    "bbox_extent": [
+      0.42,
+      0.14,
+      0.21
+    ],
+    "bbox_center": [
+      -1.3,
+      -1.64,
+      0.45
+    ],
+    "bbox_volume": 0.01
+  },
+  "object_8": {
+    "id": 88,
+    "object_tag": "bowl",
+    "object_caption": "A small blue bowl placed on a wooden desk.",
+    "bbox_extent": [
+      0.3,
+      0.29,
+      0.11
+    ],
+    "bbox_center": [
+      -1.63,
+      -1.64,
+      0.42
+    ],
+    "bbox_volume": 0.01
+  },
+  "object_9": {
+    "id": 90,
+    "object_tag": "desk",
+    "object_caption": "A rectangular tissue box placed on top of a wooden box.",
+    "bbox_extent": [
+      0.9,
+      0.87,
+      0.57
+    ],
+    "bbox_center": [
+      -1.56,
+      -1.58,
+      0.25
+    ],
+    "bbox_volume": 0.45
+  },
+  "object_10": {
+    "id": 97,
+    "object_tag": "bag",
+    "object_caption": "A blue tissue box with white patterns placed on the floor.",
+    "bbox_extent": [
+      0.48,
+      0.26,
+      0.25
+    ],
+    "bbox_center": [
+      -1.84,
+      -0.14,
+      0.09
+    ],
+    "bbox_volume": 0.03
+  },
+  "object_11": {
+    "id": 122,
+    "object_tag": "closet wall",
+    "object_caption": "A grey closet wall on the left side of the image.",
+    "bbox_extent": [
+      2.13,
+      1.22,
+      0.0
+    ],
+    "bbox_center": [
+      -0.76,
+      -1.98,
+      0.55
+    ],
+    "bbox_volume": 0.0
+  },
+  "object_12": {
+    "id": 123,
+    "object_tag": "desk",
+    "object_caption": "A wooden desk with four legs, positioned against the wall.",
+    "bbox_extent": [
+      1.56,
+      0.91,
+      0.87
+    ],
+    "bbox_center": [
+      -1.54,
+      1.2,
+      0.4
+    ],
+    "bbox_volume": 1.24
+  },
+  "object_13": {
+    "id": 129,
+    "object_tag": "floor",
+    "object_caption": "A wooden desk with a children's bag on top, placed against a wall on a wooden floor.",
+    "bbox_extent": [
+      5.15,
+      5.27,
+      0.01
+    ],
+    "bbox_center": [
+      0.08,
+      0.21,
+      0.01
+    ],
+    "bbox_volume": 0.27
+  },
+  "object_14": {
+    "id": 131,
+    "object_tag": "cup",
+    "object_caption": "A pink cup placed on the desk.",
+    "bbox_extent": [
+      0.4,
+      0.21,
+      0.12
+    ],
+    "bbox_center": [
+      -1.4,
+      0.76,
+      0.79
+    ],
+    "bbox_volume": 0.01
+  },
+  "object_15": {
+    "id": 220,
+    "object_tag": "desk",
+    "object_caption": "A dark wooden desk with one visible leg.",
+    "bbox_extent": [
+      0.87,
+      0.94,
+      0.43
+    ],
+    "bbox_center": [
+      -1.61,
+      0.69,
+      0.45
+    ],
+    "bbox_volume": 0.35
+  },
+  "object_16": {
+    "id": 223,
+    "object_tag": "storage bin",
+    "object_caption": "A pink storage bin on the desk.",
+    "bbox_extent": [
+      0.7,
+      0.55,
+      0.18
+    ],
+    "bbox_center": [
+      -1.58,
+      1.5,
+      0.85
+    ],
+    "bbox_volume": 0.07
+  },
+  "object_17": {
+    "id": 248,
+    "object_tag": "closet wall",
+    "object_caption": "A section of a closet wall forming the corner of the room.",
+    "bbox_extent": [
+      1.72,
+      0.81,
+      0.0
+    ],
+    "bbox_center": [
+      -1.98,
+      -1.38,
+      0.55
+    ],
+    "bbox_volume": 0.0
+  },
+  "object_19": {
+    "id": 351,
+    "object_tag": "shoe",
+    "object_caption": "A single pink shoe on the floor.",
+    "bbox_extent": [
+      0.47,
+      0.28,
+      0.12
+    ],
+    "bbox_center": [
+      1.77,
+      0.91,
+      0.05
+    ],
+    "bbox_volume": 0.02
+  },
+  "object_20": {
+    "id": 356,
+    "object_tag": "desk",
+    "object_caption": "Table with green legs, situated on the left side of the room.",
+    "bbox_extent": [
+      0.94,
+      0.9,
+      0.0
+    ],
+    "bbox_center": [
+      0.25,
+      1.99,
+      0.31
+    ],
+    "bbox_volume": 0.0
+  },
+  "object_21": {
+    "id": 357,
+    "object_tag": "towel",
+    "object_caption": "A blue towel on the desk.",
+    "bbox_extent": [
+      1.47,
+      1.52,
+      0.79
+    ],
+    "bbox_center": [
+      0.8,
+      1.64,
+      0.56
+    ],
+    "bbox_volume": 1.77
+  },
+  "object_22": {
+    "id": 358,
+    "object_tag": "laptop",
+    "object_caption": "A blue laptop with a black keyboard and an open screen displaying a blue background, placed on the desk.",
+    "bbox_extent": [
+      0.2,
+      0.27,
+      0.11
+    ],
+    "bbox_center": [
+      0.84,
+      1.51,
+      0.80
+    ],
+    "bbox_volume": 0.01
+  },
+  "object_23": {
+    "id": 363,
+    "object_tag": "desk",
+    "object_caption": "Medium-sized desk on the left side of the image.",
+    "bbox_extent": [
+      1.22,
+      1.22,
+      0.8
+    ],
+    "bbox_center": [
+      0.7,
+      1.75,
+      0.56
+    ],
+    "bbox_volume": 1.19
+  },
+  "object_24": {
+    "id": 364,
+    "object_tag": "towel",
+    "object_caption": "A folded towel placed on the desk in the left background.",
+    "bbox_extent": [
+      0.21,
+      0.09,
+      0.08
+    ],
+    "bbox_center": [
+      0.31,
+      1.55,
+      0.81
+    ],
+    "bbox_volume": 0.0
+  },
+  "object_25": {
+    "id": 365,
+    "object_tag": "shoe",
+    "object_caption": "A single shoe lying on the floor in the center of the image.",
+    "bbox_extent": [
+      0.33,
+      0.13,
+      0.12
+    ],
+    "bbox_center": [
+      1.66,
+      1.04,
+      0.05
+    ],
+    "bbox_volume": 0.01
+  },
+  "object_26": {
+    "id": 389,
+    "object_tag": "plate",
+    "object_caption": "A blue plate with a pink rim on the desk next to a cup.",
+    "bbox_extent": [
+      0.32,
+      0.31,
+      0.03
+    ],
+    "bbox_center": [
+      -1.52,
+      1.02,
+      0.78
+    ],
+    "bbox_volume": 0.0
+  },
+  "object_27": {
+    "id": 427,
+    "object_tag": "closet wall",
+    "object_caption": "A closet wall in the background.",
+    "bbox_extent": [
+      2.67,
+      1.64,
+      0.05
+    ],
+    "bbox_center": [
+      1.99,
+      1.01,
+      0.63
+    ],
+    "bbox_volume": 0.22
+  },
+  "object_28": {
+    "id": 438,
+    "object_tag": "chair",
+    "object_caption": "A light-colored wooden chair partially visible beneath the smaller desk on the right.",
+    "bbox_extent": [
+      0.36,
+      0.3,
+      0.0
+    ],
+    "bbox_center": [
+      1.99,
+      1.87,
+      0.15
+    ],
+    "bbox_volume": 0.0
+  },
+  "object_29": {
+    "id": 480,
+    "object_tag": "shower wall",
+    "object_caption": "Grey shower wall panel on the left side.",
+    "bbox_extent": [
+      1.55,
+      1.24,
+      0.0
+    ],
+    "bbox_center": [
+      -0.12,
+      1.96,
+      0.47
+    ],
+    "bbox_volume": 0.0
+  },
+  "object_30": {
+    "id": 499,
+    "object_tag": "coffee table",
+    "object_caption": "A wooden desk with a basket, cup, and a telephone on top.",
+    "bbox_extent": [
+      1.44,
+      0.89,
+      0.79
+    ],
+    "bbox_center": [
+      1.45,
+      -1.19,
+      0.4
+    ],
+    "bbox_volume": 1.01
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "edge_0": {
+    "edge_id": 0,
+    "edge_description": "cup on top of desk",
+    "num_detections": 15,
+    "object_1_id": 0,
+    "object_1_tag": "cup",
+    "object_2_id": 1,
+    "object_2_tag": "desk",
+    "relationship": "on top of"
+  },
+  "edge_1": {
+    "edge_id": 1,
+    "edge_description": "shoe on top of desk",
+    "num_detections": 15,
+    "object_1_id": 10,
+    "object_1_tag": "shoe",
+    "object_2_id": 1,
+    "object_2_tag": "desk",
+    "relationship": "on top of"
+  },
+  "edge_2": {
+    "edge_id": 2,
+    "edge_description": "basket on top of desk",
+    "num_detections": 12,
+    "object_1_id": 2,
+    "object_1_tag": "basket",
+    "object_2_id": 1,
+    "object_2_tag": "desk",
+    "relationship": "on top of"
+  },
+  "edge_3": {
+    "edge_id": 3,
+    "edge_description": "cup on top of desk",
+    "num_detections": 10,
+    "object_1_id": 131,
+    "object_1_tag": "cup",
+    "object_2_id": 123,
+    "object_2_tag": "desk",
+    "relationship": "on top of"
+  },
+  "edge_4": {
+    "edge_id": 4,
+    "edge_description": "bowl on top of desk",
+    "num_detections": 15,
+    "object_1_id": 88,
+    "object_1_tag": "bowl",
+    "object_2_id": 90,
+    "object_2_tag": "desk",
+    "relationship": "on top of"
+  },
+  "edge_5": {
+    "edge_id": 5,
+    "edge_description": "shoe on top of desk",
+    "num_detections": 15,
+    "object_1_id": 87,
+    "object_1_tag": "shoe",
+    "object_2_id": 90,
+    "object_2_tag": "desk",
+    "relationship": "on top of"
+  },
+  "edge_6": {
+    "edge_id": 6,
+    "edge_description": "telephone on top of desk",
+    "num_detections": 5,
+    "object_1_id": 274,
+    "object_1_tag": "telephone",
+    "object_2_id": 90,
+    "object_2_tag": "desk",
+    "relationship": "on top of"
+  },
+  "edge_7": {
+    "edge_id": 7,
+    "edge_description": "plate on top of desk",
+    "num_detections": 4,
+    "object_1_id": 389,
+    "object_1_tag": "plate",
+    "object_2_id": 123,
+    "object_2_tag": "desk",
+    "relationship": "on top of"
+  }
+}

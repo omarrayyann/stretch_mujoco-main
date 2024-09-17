@@ -1,0 +1,76 @@
+<mujoco model="model">
+  <asset>
+    <texture type="2d" name="texture_pencil_case" file="../../Environment/objects_assets/pencil_case/texture.png"/>
+    <material name="material_0_pencil_case" texture="texture_pencil_case" specular="0.5" shininess="0.5"/>
+    <mesh name="pencil_case" file="../../Environment/objects_assets/pencil_case/model.obj"/>
+    <mesh name="model_collision_pencil_case_0" file="../../Environment/objects_assets/pencil_case/model_collision_0.obj"/>
+    <mesh name="model_collision_pencil_case_1" file="../../Environment/objects_assets/pencil_case/model_collision_1.obj"/>
+    <mesh name="model_collision_pencil_case_2" file="../../Environment/objects_assets/pencil_case/model_collision_2.obj"/>
+    <mesh name="model_collision_pencil_case_3" file="../../Environment/objects_assets/pencil_case/model_collision_3.obj"/>
+    <mesh name="model_collision_pencil_case_4" file="../../Environment/objects_assets/pencil_case/model_collision_4.obj"/>
+    <mesh name="model_collision_pencil_case_5" file="../../Environment/objects_assets/pencil_case/model_collision_5.obj"/>
+    <mesh name="model_collision_pencil_case_6" file="../../Environment/objects_assets/pencil_case/model_collision_6.obj"/>
+    <mesh name="model_collision_pencil_case_7" file="../../Environment/objects_assets/pencil_case/model_collision_7.obj"/>
+    <mesh name="model_collision_pencil_case_8" file="../../Environment/objects_assets/pencil_case/model_collision_8.obj"/>
+    <mesh name="model_collision_pencil_case_9" file="../../Environment/objects_assets/pencil_case/model_collision_9.obj"/>
+    <mesh name="model_collision_pencil_case_10" file="../../Environment/objects_assets/pencil_case/model_collision_10.obj"/>
+    <mesh name="model_collision_pencil_case_11" file="../../Environment/objects_assets/pencil_case/model_collision_11.obj"/>
+    <mesh name="model_collision_pencil_case_12" file="../../Environment/objects_assets/pencil_case/model_collision_12.obj"/>
+    <mesh name="model_collision_pencil_case_13" file="../../Environment/objects_assets/pencil_case/model_collision_13.obj"/>
+    <mesh name="model_collision_pencil_case_14" file="../../Environment/objects_assets/pencil_case/model_collision_14.obj"/>
+    <mesh name="model_collision_pencil_case_15" file="../../Environment/objects_assets/pencil_case/model_collision_15.obj"/>
+    <mesh name="model_collision_pencil_case_16" file="../../Environment/objects_assets/pencil_case/model_collision_16.obj"/>
+    <mesh name="model_collision_pencil_case_17" file="../../Environment/objects_assets/pencil_case/model_collision_17.obj"/>
+    <mesh name="model_collision_pencil_case_18" file="../../Environment/objects_assets/pencil_case/model_collision_18.obj"/>
+    <mesh name="model_collision_pencil_case_19" file="../../Environment/objects_assets/pencil_case/model_collision_19.obj"/>
+    <mesh name="model_collision_pencil_case_20" file="../../Environment/objects_assets/pencil_case/model_collision_20.obj"/>
+    <mesh name="model_collision_pencil_case_21" file="../../Environment/objects_assets/pencil_case/model_collision_21.obj"/>
+    <mesh name="model_collision_pencil_case_22" file="../../Environment/objects_assets/pencil_case/model_collision_22.obj"/>
+    <mesh name="model_collision_pencil_case_23" file="../../Environment/objects_assets/pencil_case/model_collision_23.obj"/>
+    <mesh name="model_collision_pencil_case_24" file="../../Environment/objects_assets/pencil_case/model_collision_24.obj"/>
+    <mesh name="model_collision_pencil_case_25" file="../../Environment/objects_assets/pencil_case/model_collision_25.obj"/>
+    <mesh name="model_collision_pencil_case_26" file="../../Environment/objects_assets/pencil_case/model_collision_26.obj"/>
+    <mesh name="model_collision_pencil_case_27" file="../../Environment/objects_assets/pencil_case/model_collision_27.obj"/>
+    <mesh name="model_collision_pencil_case_28" file="../../Environment/objects_assets/pencil_case/model_collision_28.obj"/>
+    <mesh name="model_collision_pencil_case_29" file="../../Environment/objects_assets/pencil_case/model_collision_29.obj"/>
+    <mesh name="model_collision_pencil_case_30" file="../../Environment/objects_assets/pencil_case/model_collision_30.obj"/>
+    <mesh name="model_collision_pencil_case_31" file="../../Environment/objects_assets/pencil_case/model_collision_31.obj"/>
+  </asset>
+  <worldbody>
+    <body name="pencil_case" pos="0.4 1.5 0.8"> <freejoint/>
+      <geom material="material_0_pencil_case" mesh="pencil_case" type="mesh" contype="0" conaffinity="0" group="2"/>
+      <geom mesh="model_collision_pencil_case_0" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_1" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_2" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_3" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_4" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_5" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_6" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_7" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_8" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_9" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_10" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_11" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_12" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_13" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_14" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_15" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_16" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_17" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_18" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_19" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_20" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_21" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_22" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_23" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_24" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_25" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_26" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_27" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_28" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_29" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_30" type="mesh" group="3"/>
+      <geom mesh="model_collision_pencil_case_31" type="mesh" group="3"/>
+    </body>
+  </worldbody>
+</mujoco>

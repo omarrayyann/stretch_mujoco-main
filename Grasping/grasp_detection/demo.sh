@@ -1,0 +1,1 @@
+python Grasping/grasp_detection/demo.py --checkpoint_path Grasping/grasp_detection/log/checkpoint_detection.tar --top_down_grasp --debug

@@ -1,0 +1,21 @@
+__pycache__/
+.mypy_cache/
+.vscode/
+.idea/
+*.pyc
+*.egg-info/
+build/
+
+# Vim files
+*.swp
+*.swo
+*.pth   
+*.pkl   
+*.swn
+*.tar
+
+MUJOCO_LOG.TXT
+
+# Temp runtime XML 
+stretch_temp_abs.xml
+myenv
