@@ -61,7 +61,7 @@ class UntidyBotSimulator():
             self.pcd_points, self.pcd_labels, self.all_pcd_points = Path_Planning.preprocess(self.args.pcd_path,self.args.grid_size,0.03,0.35,self.args.processed_pcd_path)
     
     def fake_pcd(self):
-        self.pcd_points, self.pcd_labels, self.all_pcd_points = Utils.make_fake_pcd(x_range=(0.45,4.8),y_range=(-1.6, -0.8))
+        self.pcd_points, self.pcd_labels, self.all_pcd_points = Utils.make_fake_pcd(x_range=(0.5,4.7),y_range=(-1.5, -0.7))
 
 
     def home(self)->None:
@@ -107,8 +107,12 @@ class UntidyBotSimulator():
     def __run_mac(self)->None:
         with mujoco.viewer.launch_passive(self.mjmodel,self.mjdata,show_left_ui=False,show_right_ui=False) as viewer:
             while viewer.is_running():
+                start_ts = time.perf_counter()
                 mujoco.mj_step(self.mjmodel, self.mjdata)
                 viewer.sync()
+                elapsed = time.perf_counter() - start_ts
+                if elapsed < self.mjmodel.opt.timestep:
+                    time.sleep(self.mjmodel.opt.timestep - elapsed)
 
     def start(self) -> None:
         print("Starting")

@@ -138,13 +138,13 @@ def pick(self, object, visualize_path=False):
 
         Utils.print_debug(f"Closing gripper",self.args.debug,module_id)
         successfully_picked = Manipulation.grasp(self)
-        Utils.sleep(1)
+        Utils.sleep(3)
 
         Utils.print_debug(f"Unextending arm",self.args.debug,module_id)
-        Manipulation.move_joint_to(self,"arm",0.0)
+        Manipulation.move_joint_to_timed(self,"arm",0.0,5)
 
         Utils.print_debug(f"Lifting arm up",self.args.debug,module_id)
-        Manipulation.move_joint_to(self,"lift",1.1)
+        Manipulation.move_joint_to_timed(self,"lift",1.1,5)
 
         Utils.sleep(0.5)
     

@@ -26,7 +26,7 @@ def parse_arguments():
         disable_any_grasp=False,
         grasp_server_host="localhost",
         grasp_server_port=9875,
-        min_distance=0.3
+        min_distance=0.5
     )
 
     return args
@@ -54,7 +54,7 @@ def parse_arguments():
     parser.add_argument('--disable_any_grasp', action='store_true', help='Disable AnyGrasp Usage')
     parser.add_argument('--grasp_server_host', type=str, default="localhost", help='Grasping Server IP')
     parser.add_argument('--grasp_server_port', type=int, default=9875, help='Grasping Server Host')
-    parser.add_argument('--min_distance', type=float, default=0.3, help='Minimum vaible distance from an object.')
+    parser.add_argument('--min_distance', type=float, default=0.6, help='Minimum vaible distance from an object.')
 
     args = parser.parse_args()
     if args.debug:

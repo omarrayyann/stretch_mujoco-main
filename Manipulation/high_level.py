@@ -139,7 +139,10 @@ def move_grasp(self, position, rotation=None, eef_type=1 , lift_arm_first=False,
         res = best_result
     else:
         if eef_type == 2:
+            print(1)
             self.mjdata_fake = copy.deepcopy(self.mjdata)
+
+            print(2)
             res = scipy.optimize.minimize(get_error_constrained, q0, args=(position, rotation), bounds=bounds_allow_forward_backward, tol=0.0001, options={"maxiter": 10000000})
         else:
             self.mjdata_fake = copy.deepcopy(self.mjdata)
@@ -148,7 +151,7 @@ def move_grasp(self, position, rotation=None, eef_type=1 , lift_arm_first=False,
     current_q = np.copy(q0)
     current_q[2:7] = res.x[2:7]
     current_q[10:] = res.x[10:]
-
+    del self.mjdata_fake 
     Utils.set_geom_pose(self.mjmodel, "base_target", np.array([current_q[10], current_q[11], 0.000001]), None, debug_mode=self.args.debug)
 
     Utils.print_debug(f"Found solution. Starting joints movement to the grasping pose",self.args.debug,module_id)
@@ -237,6 +240,8 @@ def point_camera_to(self, target_position):
     
     self.mjdata_fake = copy.deepcopy(self.mjdata)
     result = scipy.optimize.minimize(get_error_camera, initial_angles, args=(self,target_position,), bounds=bounds)
+    self.mjdata_fake = None
+    del self.mjdata_fake 
 
     pan_angle, tilt_angle = result.x
     Utils.sleep(2)

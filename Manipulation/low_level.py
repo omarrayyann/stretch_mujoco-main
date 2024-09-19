@@ -46,11 +46,11 @@ def grasp(self):
     width = 0.02
     while width>=-0.02:
         move_joint_to(self,"gripper", width)
-        width -= 0.01 # 0.001
+        width -= 0.005 # 0.001
         Utils.sleep(0.5)
         after = self.mjdata.actuator("gripper").length[0]
-        # if (abs(after-width)>0.01):
-        #     break
+        if (abs(after-width)>0.02):
+            break
         
     if not is_grasping(self):
         return False
@@ -59,6 +59,23 @@ def grasp(self):
 
 def move_joint_to(self,actuator_name:str,pos:float)->None:
     self.mjdata.actuator(actuator_name).ctrl = pos
+
+def move_joint_to_timed(self,actuator_name:str,pos:float, seconds:int)->None:
+    current = self.mjdata.actuator(actuator_name).length[0] 
+    per_second = (pos-current)/seconds
+    if pos > current:
+        while current < pos:
+            Utils.print_debug(f"Current: {current}",self.args.debug,module_id)
+            current += per_second
+            self.mjdata.actuator(actuator_name).ctrl = current
+            Utils.sleep(3)
+    else:
+        while current > pos:
+            Utils.print_debug(f"Current: {current}",self.args.debug,module_id)
+            current += per_second
+            self.mjdata.actuator(actuator_name).ctrl = current
+            Utils.sleep(3)
+
 
 def ungrasp(self,width=0.03):
     Utils.print_debug(f"Opening gripper to width: {width}",self.args.debug,module_id)

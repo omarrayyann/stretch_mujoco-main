@@ -5,9 +5,9 @@
     <flag multiccd="enable"/>
   </option> -->
   <option integrator="implicitfast" impratio="20" cone="elliptic">
-    <flag multiccd="enable"/>
+    <!-- <flag multiccd="enable"/> -->
   </option>
-  <size njmax="5000" nconmax="5000" />
+  <size njmax="2000" nconmax="2000" />
 
   <default>
     <default class="stretch">
@@ -226,6 +226,848 @@
   </asset>
 
   <worldbody>
+
+
+    <geom name="pick_target" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.0"/>
+
+    <geom name="base_target" type="cylinder" size="0.1 0.001 0.1" pos="0 0 0.001" rgba="0 1 0 0.0" contype="0" conaffinity="0"/>
+    <geom name="base_center" type="cylinder" size="0.1 0.001 0.1" pos="0 0 0.001" rgba="1 0 0 0.0" contype="0" conaffinity="0"/>
+
+
+        <body name="body_extent" pos="100 100 100">
+            <geom name="body_extent" type="box" size="0.39 0.31 0.15" rgba="0 1 0 0.2" contype="0" conaffinity="0"/>
+        </body>
+
+    <body name="grasping_head_0" pos="19 91 91">
+      <geom name="center_0" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_0" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_0" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_0" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_1" pos="19 91 91">
+      <geom name="center_1" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_1" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_1" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_1" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_2" pos="19 91 91">
+      <geom name="center_2" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_2" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_2" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_2" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_3" pos="19 91 91">
+      <geom name="center_3" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_3" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_3" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_3" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_4" pos="19 91 91">
+      <geom name="center_4" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_4" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_4" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_4" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_5" pos="19 91 91">
+      <geom name="center_5" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_5" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_5" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_5" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_6" pos="19 91 91">
+      <geom name="center_6" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_6" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_6" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_6" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_7" pos="19 91 91">
+      <geom name="center_7" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_7" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_7" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_7" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_8" pos="19 91 91">
+      <geom name="center_8" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_8" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_8" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_8" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_9" pos="19 91 91">
+      <geom name="center_9" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_9" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_9" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_9" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_10" pos="19 91 91">
+      <geom name="center_10" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_10" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_10" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_10" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_11" pos="19 91 91">
+      <geom name="center_11" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_11" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_11" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_11" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_12" pos="19 91 91">
+      <geom name="center_12" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_12" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_12" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_12" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_13" pos="19 91 91">
+      <geom name="center_13" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_13" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_13" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_13" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_14" pos="19 91 91">
+      <geom name="center_14" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_14" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_14" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_14" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_15" pos="19 91 91">
+      <geom name="center_15" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_15" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_15" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_15" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_16" pos="19 91 91">
+      <geom name="center_16" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_16" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_16" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_16" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_17" pos="19 91 91">
+      <geom name="center_17" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_17" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_17" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_17" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_18" pos="19 91 91">
+      <geom name="center_18" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_18" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_18" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_18" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_19" pos="19 91 91">
+      <geom name="center_19" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_19" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_19" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_19" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_20" pos="19 91 91">
+      <geom name="center_20" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_20" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_20" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_20" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_21" pos="19 91 91">
+      <geom name="center_21" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_21" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_21" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_21" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_22" pos="19 91 91">
+      <geom name="center_22" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_22" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_22" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_22" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_23" pos="19 91 91">
+      <geom name="center_23" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_23" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_23" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_23" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_24" pos="19 91 91">
+      <geom name="center_24" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_24" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_24" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_24" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_25" pos="19 91 91">
+      <geom name="center_25" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_25" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_25" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_25" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_26" pos="19 91 91">
+      <geom name="center_26" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_26" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_26" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_26" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_27" pos="19 91 91">
+      <geom name="center_27" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_27" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_27" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_27" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_28" pos="19 91 91">
+      <geom name="center_28" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_28" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_28" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_28" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_29" pos="19 91 91">
+      <geom name="center_29" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_29" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_29" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_29" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_30" pos="19 91 91">
+      <geom name="center_30" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_30" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_30" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_30" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_31" pos="19 91 91">
+      <geom name="center_31" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_31" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_31" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_31" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_32" pos="19 91 91">
+      <geom name="center_32" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_32" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_32" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_32" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_33" pos="19 91 91">
+      <geom name="center_33" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_33" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_33" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_33" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_34" pos="19 91 91">
+      <geom name="center_34" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_34" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_34" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_34" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_35" pos="19 91 91">
+      <geom name="center_35" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_35" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_35" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_35" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_36" pos="19 91 91">
+      <geom name="center_36" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_36" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_36" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_36" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_37" pos="19 91 91">
+      <geom name="center_37" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_37" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_37" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_37" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_38" pos="19 91 91">
+      <geom name="center_38" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_38" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_38" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_38" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_39" pos="19 91 91">
+      <geom name="center_39" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_39" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_39" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_39" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_40" pos="19 91 91">
+      <geom name="center_40" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_40" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_40" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_40" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_41" pos="19 91 91">
+      <geom name="center_41" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_41" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_41" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_41" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_42" pos="19 91 91">
+      <geom name="center_42" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_42" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_42" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_42" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_43" pos="19 91 91">
+      <geom name="center_43" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_43" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_43" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_43" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_44" pos="19 91 91">
+      <geom name="center_44" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_44" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_44" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_44" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_45" pos="19 91 91">
+      <geom name="center_45" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_45" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_45" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_45" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_46" pos="19 91 91">
+      <geom name="center_46" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_46" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_46" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_46" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_47" pos="19 91 91">
+      <geom name="center_47" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_47" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_47" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_47" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_48" pos="19 91 91">
+      <geom name="center_48" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_48" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_48" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_48" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_49" pos="19 91 91">
+      <geom name="center_49" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_49" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_49" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_49" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_50" pos="19 91 91">
+      <geom name="center_50" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_50" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_50" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_50" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_51" pos="19 91 91">
+      <geom name="center_51" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_51" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_51" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_51" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_52" pos="19 91 91">
+      <geom name="center_52" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_52" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_52" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_52" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_53" pos="19 91 91">
+      <geom name="center_53" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_53" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_53" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_53" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_54" pos="19 91 91">
+      <geom name="center_54" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_54" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_54" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_54" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_55" pos="19 91 91">
+      <geom name="center_55" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_55" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_55" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_55" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_56" pos="19 91 91">
+      <geom name="center_56" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_56" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_56" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_56" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_57" pos="19 91 91">
+      <geom name="center_57" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_57" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_57" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_57" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_58" pos="19 91 91">
+      <geom name="center_58" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_58" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_58" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_58" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_59" pos="19 91 91">
+      <geom name="center_59" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_59" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_59" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_59" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_60" pos="19 91 91">
+      <geom name="center_60" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_60" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_60" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_60" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_61" pos="19 91 91">
+      <geom name="center_61" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_61" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_61" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_61" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_62" pos="19 91 91">
+      <geom name="center_62" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_62" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_62" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_62" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_63" pos="19 91 91">
+      <geom name="center_63" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_63" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_63" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_63" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_64" pos="19 91 91">
+      <geom name="center_64" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_64" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_64" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_64" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_65" pos="19 91 91">
+      <geom name="center_65" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_65" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_65" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_65" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_66" pos="19 91 91">
+      <geom name="center_66" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_66" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_66" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_66" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_67" pos="19 91 91">
+      <geom name="center_67" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_67" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_67" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_67" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_68" pos="19 91 91">
+      <geom name="center_68" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_68" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_68" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_68" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_69" pos="19 91 91">
+      <geom name="center_69" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_69" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_69" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_69" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_70" pos="19 91 91">
+      <geom name="center_70" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_70" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_70" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_70" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_71" pos="19 91 91">
+      <geom name="center_71" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_71" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_71" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_71" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_72" pos="19 91 91">
+      <geom name="center_72" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_72" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_72" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_72" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_73" pos="19 91 91">
+      <geom name="center_73" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_73" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_73" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_73" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_74" pos="19 91 91">
+      <geom name="center_74" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_74" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_74" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_74" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_75" pos="19 91 91">
+      <geom name="center_75" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_75" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_75" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_75" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_76" pos="19 91 91">
+      <geom name="center_76" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_76" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_76" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_76" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_77" pos="19 91 91">
+      <geom name="center_77" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_77" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_77" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_77" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_78" pos="19 91 91">
+      <geom name="center_78" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_78" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_78" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_78" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_79" pos="19 91 91">
+      <geom name="center_79" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_79" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_79" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_79" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_80" pos="19 91 91">
+      <geom name="center_80" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_80" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_80" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_80" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_81" pos="19 91 91">
+      <geom name="center_81" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_81" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_81" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_81" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_82" pos="19 91 91">
+      <geom name="center_82" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_82" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_82" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_82" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_83" pos="19 91 91">
+      <geom name="center_83" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_83" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_83" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_83" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_84" pos="19 91 91">
+      <geom name="center_84" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_84" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_84" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_84" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_85" pos="19 91 91">
+      <geom name="center_85" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_85" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_85" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_85" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_86" pos="19 91 91">
+      <geom name="center_86" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_86" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_86" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_86" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_87" pos="19 91 91">
+      <geom name="center_87" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_87" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_87" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_87" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_88" pos="19 91 91">
+      <geom name="center_88" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_88" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_88" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_88" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_89" pos="19 91 91">
+      <geom name="center_89" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_89" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_89" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_89" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_90" pos="19 91 91">
+      <geom name="center_90" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_90" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_90" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_90" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_91" pos="19 91 91">
+      <geom name="center_91" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_91" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_91" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_91" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_92" pos="19 91 91">
+      <geom name="center_92" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_92" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_92" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_92" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_93" pos="19 91 91">
+      <geom name="center_93" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_93" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_93" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_93" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_94" pos="19 91 91">
+      <geom name="center_94" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_94" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_94" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_94" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_95" pos="19 91 91">
+      <geom name="center_95" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_95" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_95" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_95" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_96" pos="19 91 91">
+      <geom name="center_96" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_96" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_96" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_96" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_97" pos="19 91 91">
+      <geom name="center_97" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_97" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_97" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_97" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_98" pos="19 91 91">
+      <geom name="center_98" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_98" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_98" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_98" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_99" pos="19 91 91">
+      <geom name="center_99" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_99" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_99" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_99" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    <body name="grasping_head" pos="1 1 1">
+      <geom name="ceter" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+    </body>
+        
+
+
+<body name="eef_target" pos="1 1 1" quat="1 0 0 0">
+  <!-- Left finger of the gripper -->
+  <body name="left_finger" pos="0 0.0 0.015">
+    <geom name="left_eef_link" type="box" size="0.003 0.02 0.003" pos="0 0 0" quat="1 0 0 0" rgba="0 0 1 0.5" />
+  </body>
+  
+  <!-- Right finger of the gripper -->
+  <body name="right_finger" pos="0 0.0 -0.015">
+    <geom name="right_eef_link" type="box" size="0.003 0.02 0.003" pos="0 0 0" quat="1 0 0 0" rgba="0 0 1 0.5" contype="0" conaffinity="0"/>
+  </body>
+  
+  <!-- Connecting block of the gripper -->
+  <body name="connector" pos="0 0.02 0">
+    <geom name="connector_geom" type="box" size="0.003 0.003 0.02" pos="0 0 0" quat="1 0 0 0" rgba="0 0 1 0.5" contype="0" conaffinity="0"/>
+  </body>
+
+</body>
+
+    <geom name="eef_center" type="sphere" size="0.035" pos="100 100 0.001" rgba="1 0 0 0.5"/>
+
+
+
     <body name="base_link" childclass="stretch">
       <freejoint/>
       <geom mesh="base_link_0" material="Caster_Rollers_Red" density="100" class="visual"/>

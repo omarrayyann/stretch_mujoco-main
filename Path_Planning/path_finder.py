@@ -206,7 +206,7 @@ if __name__ == "__main__":
     new_pcd_points = processed_data['points']
     new_pcd_labels = processed_data['labels']
 
-    optimized_waypoints = find_path(new_pcd_points, new_pcd_labels, args.start_point, args.end_point, 0.0,False)
+    optimized_waypoints = find_path(new_pcd_points, new_pcd_labels, args.start_point, args.end_point, 0.4,False)
 
     if args.visualize:
         min_x, max_x = new_pcd_points[:, 0].min(), new_pcd_points[:, 0].max()

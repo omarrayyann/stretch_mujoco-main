@@ -34,13 +34,35 @@ def get_args():
 def anygrasp_detection(colors, depths, prompt_string):
     
     torch.cuda.empty_cache()
+    print(1)
     model = LangSAM(sam_type='vit_b')
+    print(2)
     colors_int = (colors * 255).astype(np.uint8).reshape((640, 480, 3))
     print(colors_int.shape)
     image_pil =  Image.fromarray(colors_int)
     masks, boxes, phrases, logits = model.predict(image_pil, prompt_string)
     print(masks.shape)
     np.save("masks.npy",masks)
+    del model
+
+    # Reshape the input color data into image format
+    # colors_int = (colors * 255).astype(np.uint8).reshape((640, 480, 3))
+    # print(colors_int.shape)
+
+    # Create a PIL image from the reshaped array (if needed for visualization)
+    # image_pil = Image.fromarray(colors_int)
+    # img_height, img_width = colors_int.shape[:2]
+    # square_size_width = img_width // 4
+    # square_size_height = img_height // 4
+    # mask = np.zeros((img_height, img_width), dtype=np.uint8)
+    # top_left_x = (img_width - square_size_width) // 4
+    # top_left_y = (img_height - square_size_height) // 4
+    # bottom_right_x = top_left_x + square_size_width
+    # bottom_right_y = top_left_y + square_size_height
+    # mask[top_left_y:bottom_right_y, top_left_x:bottom_right_x] = 1
+    # print(mask.shape)
+    # masks = [mask]
+    # np.save("masks.npy", mask)
 
     
     torch.cuda.empty_cache()
@@ -137,6 +159,8 @@ def anygrasp_detection(colors, depths, prompt_string):
 
     colors = colors/255.0
     gg, cloud = anygrasp.get_grasp(points, colors, lims=lims, apply_object_mask=True, dense_grasp=False, collision_detection=True)
+    anygrasp = None
+    del anygrasp
 
     if len(gg) == 0:
         print('No Grasp detected after collision detection!')
@@ -184,6 +208,6 @@ def anygrasp_detection(colors, depths, prompt_string):
     grasp_widths = np.array(grasp_widths, dtype=np.float32)
     langsam_mask = np.array(masks, dtype=bool)
 
-    return grasp_poses, grasp_scores, grasp_widths, masks
+    return grasp_poses, grasp_scores, grasp_widths, np.array(masks)
 
 
