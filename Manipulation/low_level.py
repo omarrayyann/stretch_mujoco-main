@@ -49,8 +49,8 @@ def grasp(self):
         width -= 0.005 # 0.001
         Utils.sleep(0.5)
         after = self.mjdata.actuator("gripper").length[0]
-        if (abs(after-width)>0.02):
-            break
+        # if (abs(after-width)>0.02):
+        #     break
         
     if not is_grasping(self):
         return False

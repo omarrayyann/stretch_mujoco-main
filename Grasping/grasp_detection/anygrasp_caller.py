@@ -8,7 +8,9 @@ from gsnet import AnyGrasp
 from graspnetAPI import GraspGroup
 from PIL import Image
 from lang_sam import LangSAM
+import gc
 
+torch.set_grad_enabled(False)
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -43,7 +45,6 @@ def anygrasp_detection(colors, depths, prompt_string):
     masks, boxes, phrases, logits = model.predict(image_pil, prompt_string)
     print(masks.shape)
     np.save("masks.npy",masks)
-    del model
 
     # Reshape the input color data into image format
     # colors_int = (colors * 255).astype(np.uint8).reshape((640, 480, 3))
@@ -159,8 +160,6 @@ def anygrasp_detection(colors, depths, prompt_string):
 
     colors = colors/255.0
     gg, cloud = anygrasp.get_grasp(points, colors, lims=lims, apply_object_mask=True, dense_grasp=False, collision_detection=True)
-    anygrasp = None
-    del anygrasp
 
     if len(gg) == 0:
         print('No Grasp detected after collision detection!')
@@ -208,6 +207,8 @@ def anygrasp_detection(colors, depths, prompt_string):
     grasp_widths = np.array(grasp_widths, dtype=np.float32)
     langsam_mask = np.array(masks, dtype=bool)
 
+    del anygrasp, colors, depths
+    torch.cuda.empty_cache()
+    gc.collect()
+
     return grasp_poses, grasp_scores, grasp_widths, np.array(masks)
-
-

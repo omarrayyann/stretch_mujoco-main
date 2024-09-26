@@ -26,7 +26,7 @@ def parse_arguments():
         disable_any_grasp=False,
         grasp_server_host="localhost",
         grasp_server_port=9875,
-        min_distance=0.5
+        min_distance=0.7
     )
 
     return args
