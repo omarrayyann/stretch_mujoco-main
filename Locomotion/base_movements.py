@@ -70,7 +70,8 @@ def orient_base_grasp(self, target_position):
 
         while abs(Utils.normalize_angle(target_theta - current_theta)) > 0.005:
             angle_diff = Utils.normalize_angle(target_theta - current_theta)
-            omega = angle_diff * 1.
+            print(angle_diff)
+            omega = angle_diff * 2.
             set_base_velocity(self, 0, omega)
             Utils.sleep(self.period)
             current_theta = get_base_orientation(self)
@@ -99,13 +100,13 @@ def orient_base_position(self, target_position):
 
     set_base_velocity(self, 0, 0)
 
-def orient_base_angle(self, target_theta):
+def orient_base_angle(self, target_theta, limit=0.001):
     
     Utils.print_debug(f"Orienting base angle to: {target_theta}",self.args.debug,module_id)
 
     current_theta = get_base_orientation(self)
 
-    while abs(Utils.normalize_angle(target_theta - current_theta)) > 0.001:
+    while abs(Utils.normalize_angle(target_theta - current_theta)) > limit:
         angle_diff = Utils.normalize_angle(target_theta - current_theta)
         omega = angle_diff * 1.0
         set_base_velocity(self,0, omega)
@@ -154,8 +155,8 @@ def diff_drive_fwd_kinematics(self,w_left:float,w_right:float)->tuple:
 def move_base_to(self, position, angle=None):
     
     Utils.print_debug(f"Moving base to position: {position}",self.args.debug,module_id)
-
-    Utils.set_geom_pose(self.mjmodel, "base_target", np.block([position,0.001]),debug_mode=self.args.debug)
+    Utils.set_geom_pose(self.mjmodel, "base_target", np.array([position[0],position[1],0.001]),debug_mode=self.args.debug)
+    print(1)
     orient_base_position(self,position)
     move_base_linear(self,position)
     if angle:

@@ -21,7 +21,8 @@ def pick(self, object, visualize_path=False):
 
     starting_position = self.mjdata.body("base_link").xpos.copy()[:2]
     ending_position = object.position[:2]
-    waypoints = Path_Planning.find_path(self,self.pcd_points,self.pcd_labels,starting_position,ending_position,self.args.min_distance,visualize_path)   
+    # waypoints = Path_Planning.find_path(self,self.pcd_points,self.pcd_labels,starting_position,ending_position,self.args.min_distance,visualize_path)   
+    waypoints = Path_Planning.find_path(self,starting_position,ending_position)
 
     for waypoint in waypoints[1:]:
         Locomotion.move_base_to(self,waypoint)

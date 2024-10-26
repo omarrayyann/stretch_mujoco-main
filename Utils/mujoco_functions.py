@@ -53,6 +53,8 @@ def camera_to_world_frame(mjdata, camera_name, T_camera_grasp):
  
     return grasp
 
+
+
 def rotation_matrix_to_align_with_vector(normal_vector):
     normal_vector = normal_vector / np.linalg.norm(normal_vector)
     initial_vector = np.array([0, 0, 1])

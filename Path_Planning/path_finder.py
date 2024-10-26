@@ -135,60 +135,65 @@ def optimize_waypoints(self, waypoints, grid, grid_labels):
 
     return optimized_path
 
-def find_path(self,new_pcd_points, new_pcd_labels, start_point, end_point, min_distance, return_visualization):
+def find_path(self,start_point, end_point):
+    return [start_point, [end_point[0],-1.5]]    
+
+# def find_path(self,new_pcd_points, new_pcd_labels, start_point, end_point, min_distance, return_visualization):
     
-    Utils.print_debug(f"Finding obstacles-free path from position: {start_point}",self.args.debug,module_id)
+#     Utils.print_debug(f"Finding obstacles-free path from position: {start_point}",self.args.debug,module_id)
 
-    start_original = np.array(start_point)
-    start = find_nearest_free_point(self, np.array(start_point), new_pcd_points, new_pcd_labels, 0.0)[:2]
-    end = np.array(end_point)
-    end = find_nearest_free_point(self, end, new_pcd_points, new_pcd_labels, min_distance)[:2]
+#     start_original = np.array(start_point)
+#     start = find_nearest_free_point(self, np.array(start_point), new_pcd_points, new_pcd_labels, 0.0)[:2]
+#     end = np.array(end_point)
+#     end = find_nearest_free_point(self, end, new_pcd_points, new_pcd_labels, min_distance)[:2]
     
-    optimized_waypoints = a_star(self, start, end, new_pcd_points, new_pcd_labels, len(np.unique(new_pcd_points[:, 0])))
-    if optimized_waypoints:
-        optimized_waypoints = optimize_waypoints(self, optimized_waypoints, new_pcd_points, new_pcd_labels)
+#     optimized_waypoints = a_star(self, start, end, new_pcd_points, new_pcd_labels, len(np.unique(new_pcd_points[:, 0])))
 
-    # Visualization logic
-    min_x, max_x = new_pcd_points[:, 0].min(), new_pcd_points[:, 0].max()
-    min_y, max_y = new_pcd_points[:, 1].min(), new_pcd_points[:, 1].max()
+#     if optimized_waypoints:
+#         optimized_waypoints = optimize_waypoints(self, optimized_waypoints, new_pcd_points, new_pcd_labels)
 
-    new_pcd_colors = np.zeros((new_pcd_labels.size, 3))
-    new_pcd_colors[new_pcd_labels == 1] = [0.8, 0, 0]
-    new_pcd_colors[new_pcd_labels == 0] = [0, 0.8, 0]
-    new_pcd_colors[new_pcd_labels == -1] = [1, 1, 1]
-    new_pcd_colors[new_pcd_labels == 2] = [1, 0.65, 0]  # Orange for expanded obstacles
+#     return optimized_waypoints
 
-    grid_labels = new_pcd_labels.reshape((len(np.unique(new_pcd_points[:, 0])), len(np.unique(new_pcd_points[:, 1]))))
-    cmap = ListedColormap(['white', 'green', 'red', 'orange'])
-    bounds = [-1.5, -0.5, 0.5, 1.5, 2.5]
-    norm = plt.Normalize(-1, 2)
+#     # Visualization logic
+#     min_x, max_x = new_pcd_points[:, 0].min(), new_pcd_points[:, 0].max()
+#     min_y, max_y = new_pcd_points[:, 1].min(), new_pcd_points[:, 1].max()
 
-    if return_visualization == False:
-        return np.array(optimized_waypoints)
+#     new_pcd_colors = np.zeros((new_pcd_labels.size, 3))
+#     new_pcd_colors[new_pcd_labels == 1] = [0.8, 0, 0]
+#     new_pcd_colors[new_pcd_labels == 0] = [0, 0.8, 0]
+#     new_pcd_colors[new_pcd_labels == -1] = [1, 1, 1]
+#     new_pcd_colors[new_pcd_labels == 2] = [1, 0.65, 0]  # Orange for expanded obstacles
+
+#     grid_labels = new_pcd_labels.reshape((len(np.unique(new_pcd_points[:, 0])), len(np.unique(new_pcd_points[:, 1]))))
+#     cmap = ListedColormap(['white', 'green', 'red', 'orange'])
+#     bounds = [-1.5, -0.5, 0.5, 1.5, 2.5]
+#     norm = plt.Normalize(-1, 2)
+
+#     return np.array(optimized_waypoints)
     
-    plt.imshow(grid_labels, cmap=cmap, norm=norm, origin='lower', extent=[min_x, max_x, min_y, max_y])
-    if optimized_waypoints is not None:
-        optimized_waypoints = np.array(optimized_waypoints)
-        plt.plot(optimized_waypoints[:, 0], optimized_waypoints[:, 1], 'b', label='Optimized Waypoints')
-        plt.scatter(optimized_waypoints[:, 0], optimized_waypoints[:, 1], c='blue')
-    plt.colorbar(ticks=[-1, 0, 1, 2], format=plt.FuncFormatter(lambda x, _: ['Undetermined', 'Free', 'Obstacle', 'Expanded Obstacle'][int(x)+1]))
-    plt.title('Point Cloud Grid Map with Optimized Waypoints')
-    plt.xlabel('X')
-    plt.ylabel('Y')
-    plt.legend()
+#     plt.imshow(grid_labels, cmap=cmap, norm=norm, origin='lower', extent=[min_x, max_x, min_y, max_y])
+#     if optimized_waypoints is not None:
+#         optimized_waypoints = np.array(optimized_waypoints)
+#         plt.plot(optimized_waypoints[:, 0], optimized_waypoints[:, 1], 'b', label='Optimized Waypoints')
+#         plt.scatter(optimized_waypoints[:, 0], optimized_waypoints[:, 1], c='blue')
+#     plt.colorbar(ticks=[-1, 0, 1, 2], format=plt.FuncFormatter(lambda x, _: ['Undetermined', 'Free', 'Obstacle', 'Expanded Obstacle'][int(x)+1]))
+#     plt.title('Point Cloud Grid Map with Optimized Waypoints')
+#     plt.xlabel('X')
+#     plt.ylabel('Y')
+#     plt.legend()
 
-    # Convert the plot to a numpy array
-    buf = io.BytesIO()
-    plt.savefig(buf, format='png')
-    buf.seek(0)
-    img = Image.open(buf)
-    img_array = np.array(img)
-    buf.close()
-    plt.close()
+#     # Convert the plot to a numpy array
+#     buf = io.BytesIO()
+#     plt.savefig(buf, format='png')
+#     buf.seek(0)
+#     img = Image.open(buf)
+#     img_array = np.array(img)
+#     buf.close()
+#     plt.close()
 
-    optimized_waypoints = np.block([start_original,optimized_waypoints])
+#     optimized_waypoints = np.block([start_original,optimized_waypoints])
 
-    return optimized_waypoints, img_array
+#     return optimized_waypoints, img_array
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Pathfinding on preprocessed data.")

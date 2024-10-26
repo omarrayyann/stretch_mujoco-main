@@ -65,7 +65,16 @@ def homogeneous_matrix(rotation_matrix, translation):
     ])
 
 def normalize_angle(angle):
-    return (angle + np.pi) % (2 * np.pi) - np.pi
+    """
+    Normalize the angle to be within [0, 2π).
+
+    Parameters:
+        angle (float): The angle to normalize (in radians).
+
+    Returns:
+        float: The normalized angle within [0, 2π).
+    """
+    return angle % (2 * np.pi)
 
 # Applies rotation on a position
 

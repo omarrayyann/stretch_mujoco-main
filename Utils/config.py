@@ -26,7 +26,7 @@ def parse_arguments():
         disable_any_grasp=False,
         grasp_server_host="localhost",
         grasp_server_port=9875,
-        min_distance=0.7
+        min_distance=0.5
     )
 
     return args
@@ -65,3 +65,46 @@ def print_arguments(args):
     print("Configuration:")
     for arg, value in vars(args).items():
         print(f"  {arg}: {value}")
+
+
+
+
+def quat2Mat(quat):
+    if len(quat) != 4:
+        print("Quaternion", quat, "invalid when generating transformation matrix.")
+        raise ValueError
+
+    # Note that the following code snippet can be used to generate the 3x3
+    #    rotation matrix, we don't use it because this file should not depend
+    #    on mujoco.
+    '''
+    from mujoco_py import functions
+    res = np.zeros(9)
+    functions.mju_quat2Mat(res, camera_quat)
+    res = res.reshape(3,3)
+    '''
+
+    # This function is lifted directly from scipy source code
+    #https://github.com/scipy/scipy/blob/v1.3.0/scipy/spatial/transform/rotation.py#L956
+    w = quat[0]
+    x = quat[1]
+    y = quat[2]
+    z = quat[3]
+
+    x2 = x * x
+    y2 = y * y
+    z2 = z * z
+    w2 = w * w
+
+    xy = x * y
+    zw = z * w
+    xz = x * z
+    yw = y * w
+    yz = y * z
+    xw = x * w
+
+    rot_mat_arr = [x2 - y2 - z2 + w2, 2 * (xy - zw), 2 * (xz + yw), \
+        2 * (xy + zw), - x2 + y2 - z2 + w2, 2 * (yz - xw), \
+        2 * (xz - yw), 2 * (yz + xw), - x2 - y2 + z2 + w2]
+    np_rot_mat = rotMatList2NPRotMat(rot_mat_arr)
+    return np_rot_mat

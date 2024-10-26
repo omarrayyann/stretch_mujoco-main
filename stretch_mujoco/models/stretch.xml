@@ -1043,7 +1043,411 @@
       <geom name="cylinder_right" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="1 0 0 1" contype="0" conaffinity="0"/>
       <geom name="connecting_bar" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="1 0 0 1" contype="0" conaffinity="0"/>
     </body>
-        
+
+
+
+<!-- Handles -->
+<body name="handle_1" pos="19 91 91">
+  <geom name="handle_1_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_2" pos="19 91 91">
+  <geom name="handle_2_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_3" pos="19 91 91">
+  <geom name="handle_3_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_4" pos="19 91 91">
+  <geom name="handle_4_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_5" pos="19 91 91">
+  <geom name="handle_5_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_6" pos="19 91 91">
+  <geom name="handle_6_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_7" pos="19 91 91">
+  <geom name="handle_7_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_8" pos="19 91 91">
+  <geom name="handle_8_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_9" pos="19 91 91">
+  <geom name="handle_9_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_10" pos="19 91 91">
+  <geom name="handle_10_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_11" pos="19 91 91">
+  <geom name="handle_11_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_12" pos="19 91 91">
+  <geom name="handle_12_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_13" pos="19 91 91">
+  <geom name="handle_13_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_14" pos="19 91 91">
+  <geom name="handle_14_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_15" pos="19 91 91">
+  <geom name="handle_15_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_16" pos="19 91 91">
+  <geom name="handle_16_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_17" pos="19 91 91">
+  <geom name="handle_17_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_18" pos="19 91 91">
+  <geom name="handle_18_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_19" pos="19 91 91">
+  <geom name="handle_19_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_20" pos="19 91 91">
+  <geom name="handle_20_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_21" pos="19 91 91">
+  <geom name="handle_21_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_22" pos="19 91 91">
+  <geom name="handle_22_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_23" pos="19 91 91">
+  <geom name="handle_23_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_24" pos="19 91 91">
+  <geom name="handle_24_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_25" pos="19 91 91">
+  <geom name="handle_25_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_26" pos="19 91 91">
+  <geom name="handle_26_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_27" pos="19 91 91">
+  <geom name="handle_27_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_28" pos="19 91 91">
+  <geom name="handle_28_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_29" pos="19 91 91">
+  <geom name="handle_29_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_30" pos="19 91 91">
+  <geom name="handle_30_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_31" pos="19 91 91">
+  <geom name="handle_31_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_32" pos="19 91 91">
+  <geom name="handle_32_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_33" pos="19 91 91">
+  <geom name="handle_33_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_34" pos="19 91 91">
+  <geom name="handle_34_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_35" pos="19 91 91">
+  <geom name="handle_35_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_36" pos="19 91 91">
+  <geom name="handle_36_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_37" pos="19 91 91">
+  <geom name="handle_37_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_38" pos="19 91 91">
+  <geom name="handle_38_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_39" pos="19 91 91">
+  <geom name="handle_39_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_40" pos="19 91 91">
+  <geom name="handle_40_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_41" pos="19 91 91">
+  <geom name="handle_41_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_42" pos="19 91 91">
+  <geom name="handle_42_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_43" pos="19 91 91">
+  <geom name="handle_43_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_44" pos="19 91 91">
+  <geom name="handle_44_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_45" pos="19 91 91">
+  <geom name="handle_45_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_46" pos="19 91 91">
+  <geom name="handle_46_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_47" pos="19 91 91">
+  <geom name="handle_47_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_48" pos="19 91 91">
+  <geom name="handle_48_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_49" pos="19 91 91">
+  <geom name="handle_49_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="handle_50" pos="19 91 91">
+  <geom name="handle_50_geom" type="sphere" size="0.05" pos="0.0 0.0 0.0" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+</body>
+
+<!-- Objects -->
+<body name="object_1" pos="19 91 91">
+  <geom name="object_1_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_2" pos="19 91 91">
+  <geom name="object_2_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_3" pos="19 91 91">
+  <geom name="object_3_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_4" pos="19 91 91">
+  <geom name="object_4_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_5" pos="19 91 91">
+  <geom name="object_5_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_6" pos="19 91 91">
+  <geom name="object_6_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_7" pos="19 91 91">
+  <geom name="object_7_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_8" pos="19 91 91">
+  <geom name="object_8_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_9" pos="19 91 91">
+  <geom name="object_9_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_10" pos="19 91 91">
+  <geom name="object_10_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_11" pos="19 91 91">
+  <geom name="object_11_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_12" pos="19 91 91">
+  <geom name="object_12_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_13" pos="19 91 91">
+  <geom name="object_13_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_14" pos="19 91 91">
+  <geom name="object_14_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_15" pos="19 91 91">
+  <geom name="object_15_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_16" pos="19 91 91">
+  <geom name="object_16_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_17" pos="19 91 91">
+  <geom name="object_17_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_18" pos="19 91 91">
+  <geom name="object_18_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_19" pos="19 91 91">
+  <geom name="object_19_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_20" pos="19 91 91">
+  <geom name="object_20_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_21" pos="19 91 91">
+  <geom name="object_21_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_22" pos="19 91 91">
+  <geom name="object_22_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_23" pos="19 91 91">
+  <geom name="object_23_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_24" pos="19 91 91">
+  <geom name="object_24_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_25" pos="19 91 91">
+  <geom name="object_25_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_26" pos="19 91 91">
+  <geom name="object_26_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_27" pos="19 91 91">
+  <geom name="object_27_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_28" pos="19 91 91">
+  <geom name="object_28_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_29" pos="19 91 91">
+  <geom name="object_29_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_30" pos="19 91 91">
+  <geom name="object_30_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_31" pos="19 91 91">
+  <geom name="object_31_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_32" pos="19 91 91">
+  <geom name="object_32_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_33" pos="19 91 91">
+  <geom name="object_33_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_34" pos="19 91 91">
+  <geom name="object_34_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_35" pos="19 91 91">
+  <geom name="object_35_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_36" pos="19 91 91">
+  <geom name="object_36_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_37" pos="19 91 91">
+  <geom name="object_37_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_38" pos="19 91 91">
+  <geom name="object_38_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_39" pos="19 91 91">
+  <geom name="object_39_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_40" pos="19 91 91">
+  <geom name="object_40_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_41" pos="19 91 91">
+  <geom name="object_41_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_42" pos="19 91 91">
+  <geom name="object_42_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_43" pos="19 91 91">
+  <geom name="object_43_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_44" pos="19 91 91">
+  <geom name="object_44_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_45" pos="19 91 91">
+  <geom name="object_45_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_46" pos="19 91 91">
+  <geom name="object_46_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_47" pos="19 91 91">
+  <geom name="object_47_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_48" pos="19 91 91">
+  <geom name="object_48_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_49" pos="19 91 91">
+  <geom name="object_49_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
+<body name="object_50" pos="19 91 91">
+  <geom name="object_50_geom" type="sphere" size="0.1" pos="0.0 0.0 0.0" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+</body>
+
 
 
 <body name="eef_target" pos="1 1 1" quat="1 0 0 0">
@@ -1061,6 +1465,12 @@
   <body name="connector" pos="0 0.02 0">
     <geom name="connector_geom" type="box" size="0.003 0.003 0.02" pos="0 0 0" quat="1 0 0 0" rgba="0 0 1 0.5" contype="0" conaffinity="0"/>
   </body>
+
+
+
+
+ 
+
 
 </body>
 
