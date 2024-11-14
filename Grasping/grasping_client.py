@@ -140,6 +140,47 @@ def get_grasps(self, colors, depths, prompt, traj_length=0.2, traj_radius=0.05):
 
     return grasp_poses, grasp_scores, grasp_widths, langsam_masks, filtered_indicies, free_indicies
 
+def get_all_grasps(self, colors, depths):
+   
+    colors = colors.astype(np.float32)
+    depths = depths.astype(np.float32)
+
+    grasp_poses, grasp_scores, grasp_widths, langsam_masks = anygrasp_detection(colors, depths, "all")
+
+    grasp_poses = grasp_poses.reshape(-1, 4, 4)
+    langsam_masks = langsam_masks.reshape((-1,640,480))
+
+    Utils.print_debug(f"Grasp Poses: {grasp_poses.shape}",self.args.debug)
+    Utils.print_debug(f"Grasp Scores: {grasp_scores.shape}",self.args.debug)
+    Utils.print_debug(f"Grasp Widths: {grasp_widths.shape}",self.args.debug)
+    Utils.print_debug(f"LangSAM Mask: {langsam_masks.shape}",self.args.debug)
+
+    grasp_centers = grasp_poses[:,0:3,3].copy()
+    intrinsic = load_camera_intrinsics()
+    image_points_all = project_points_to_image(grasp_centers, intrinsic)
+    image_points = []
+    for image_point in image_points_all:
+        if image_point[0] >= 480 or image_point[1] >= 640:
+            continue
+        image_points.append(image_point)
+    filtered_indicies = []
+    
+
+    mask = np.full((640,480), False)
+    for langsam_mask in langsam_masks:
+        mask = np.logical_or(mask,langsam_mask)
+
+    for i, point in enumerate(image_points):
+        if mask[point[1],point[0]]:
+            filtered_indicies.append(i)
+
+
+    free_indicies = filter_collision(depths.copy()/1000.0,mask,grasp_poses,radius=traj_radius,length=traj_length,exclusion_length=0.01)
+
+    Utils.print_debug(f"Received {len(grasp_poses)} grasp poses and {len(grasp_scores)} grasp scores and {len(grasp_widths)} grasp widths and {langsam_masks.shape[0]} masks and {len(filtered_indicies)} langsam filtered grasps and {len(free_indicies)} collision free grasps",self.args.debug,module_id)
+
+    return grasp_poses, grasp_scores, grasp_widths, langsam_masks, filtered_indicies, free_indicies
+
 def filter_collision(depth, mask, grasp_poses, radius=0.03,length=0.2,exclusion_length=0.03):
 
     points_3d = get_3d_points(depth, mask)

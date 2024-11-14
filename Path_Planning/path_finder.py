@@ -136,7 +136,7 @@ def optimize_waypoints(self, waypoints, grid, grid_labels):
     return optimized_path
 
 def find_path(self,start_point, end_point):
-    return [start_point, [end_point[0],-1.5]]    
+    return [start_point, [end_point[0],-1.35]]    
 
 # def find_path(self,new_pcd_points, new_pcd_labels, start_point, end_point, min_distance, return_visualization):
     

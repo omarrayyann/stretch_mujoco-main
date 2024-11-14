@@ -264,7 +264,7 @@ def main(task: str, layout: int, style: int, write_to_file: str):
         layout=layout,
         style=style,
         write_to_file=write_to_file,
-        robot_spawn_pose={"pos": "2.26 -2 0.0", "quat": "0 0 0 1"},
+        robot_spawn_pose={"pos": "2.26 -2.5 0.0", "quat": "0 0 0 1"},
     )
     
 
@@ -283,7 +283,7 @@ def main(task: str, layout: int, style: int, write_to_file: str):
         }
 
     # instruction = input("Please enter your instruction or string: ")
-    instruction = "test"
+    instruction = "pick the fruit"
 
     # Convert the dictionary to a JSON string for output
     formatted_json = json.dumps(output, indent=2)

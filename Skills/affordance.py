@@ -1,41 +1,13 @@
 import numpy as np
-import rerun as rr
-import time
-from queue import Queue
-import cv2
 
 module_id = "SKILLS"
 # Untidy-Bot Modules
 import Manipulation
 import Utils
 import Classes
-import SAM2_Tapnet
+import cv2
 
-def create_numpy_image(frame, points):
-
-    mask_image = (frame.mask).astype(np.uint8)
-    rgb_image = (frame.rgb).astype(np.uint8)
-    
-    mask_image_3channel = np.stack((mask_image,mask_image*255,mask_image), axis=-1)
-    
-    # combined_image = np.maximum(mask_image_3channel, rgb_image)
-    combined_image = rgb_image
-    
-    def draw_circle(image, center, radius, color):
-        y_center, x_center = center
-        for x in range(x_center - radius, x_center + radius + 1):
-            for y in range(y_center - radius, y_center + radius + 1):
-                if (x - x_center)**2 + (y - y_center)**2 <= radius**2:
-                    if 0 <= x < image.shape[1] and 0 <= y < image.shape[0]:
-                        image[y, x] = color
-    
-    for point in points:
-        x, y = int(point[1]), int(point[0])
-        draw_circle(combined_image, (x, y), 2, [0, 0, 255])
-
-    return combined_image
-
-def roll_vector(self, vector, grasp_pose, original_frame, sam_tap, max_error=0.03, incrementation=0.01, max_length=0.15, method=1):
+def compute_vector_reward(self, vector, grasp_pose, max_error=0.03, incrementation=0.01, max_length=0.15):
    
     original_position = self.mjdata.body("link_grasp_center").xpos.copy()
     initial_grasp = self.mjdata.actuator("gripper").length[0].copy()
@@ -43,77 +15,67 @@ def roll_vector(self, vector, grasp_pose, original_frame, sam_tap, max_error=0.0
     length = 0.0
     error = 0.0
     reward = 0.0
-
-    eef_trajectory = [original_position]
-    frames = [original_frame,get_frame(self,original_position)]
+    trajectory = [original_position]
 
     while Manipulation.low_level.is_grasping(self) == True and error<max_error and length <= (max_length-incrementation) and (self.mjdata.actuator("gripper").length[0].copy()-initial_grasp)<0.005:
+
         length += incrementation
         new_position = original_position + vector*length
 
         Utils.set_body_pose(self.mjmodel,"grasping_head",new_position,grasp_pose[0:3,0:3],self.args.debug)
 
         debug_status = self.args.debug
-        # self.args.debug = False
+        self.args.debug = False
         Manipulation.move_grasp(self,new_position,grasp_pose[0:3,0:3],2,False,False)
         self.args.debug = debug_status
 
         current_position = self.mjdata.body("link_grasp_center").xpos.copy()
-
-        eef_trajectory.append(current_position)
-        frames.append(get_frame(self,current_position))
+        trajectory.append(current_position)
 
         error = np.linalg.norm(new_position-current_position)
         Utils.print_debug(f"Error: {error}",self.args.debug) 
          
-    movement_vector = eef_trajectory[-1] - eef_trajectory[0]
 
-    for position in eef_trajectory[::-1]:
+    movement_vector = trajectory[-1] - trajectory[0]
+
+    for position in trajectory[::-1]:
         debug_status = self.args.debug
-        # self.args.debug = False
+        self.args.debug = False
         Manipulation.move_grasp(self,position,grasp_pose[0:3,0:3],2,False,False)
         self.args.debug = debug_status
 
-    eef_trajectory = np.array(eef_trajectory)
-    
-    if sam_tap:
-        centers, normals, rewards, _, tracks = SAM2_Tapnet.compute_sam2_tapnet_reward(frames, 300)
-    else:
-        centers = []
-        normals = []
-        rewards = []
+    trajectory = np.array(trajectory)
 
-    center, _, normal = Utils.fit_circle_to_points(eef_trajectory)
+
+    for traj_index in range(len(trajectory)):
+        Utils.set_geom_pose(self.mjmodel,f"test_{traj_index}",trajectory[traj_index],None)
+
+
+    center, _, normal = Utils.fit_circle_to_points(trajectory)
+
     # Visualiza Circle and Arc Actual
     rot = Utils.rotation_matrix_to_align_with_vector(normal)
     Utils.set_geom_pose(self.mjmodel,"actual_circle",center,rot,self.args.debug)
     Utils.set_geom_cylinder_radius(self.mjmodel,"actual_circle",np.linalg.norm(original_position-center))
     Utils.set_geom_pose(self.mjmodel,"actual_norm",center+normal*0.02,None,self.args.debug)
-    reward = compute_movement_reward(eef_trajectory, frames, method=method)
 
-    centers.append(center)
-    normals.append(normal)
-    rewards.append(reward)
+    if center is None:
+        return None, None, reward, movement_vector
 
-    original_points = tracks[0][:,0]
-    original_image = create_numpy_image(frames[0], original_points)
-    first_points = tracks[0][:,1]
-    first_image = create_numpy_image(frames[1], first_points)
-    second_points = tracks[0][:,-1]
-    second_image = create_numpy_image(frames[-1], second_points)
+    # reward = movement_vector[0]*movement_vector[0] + movement_vector[1]*movement_vector[1] + movement_vector[2]*movement_vector[2]
+    reward = 0.0
+    if len(trajectory) > 1:
+        for i in range(1,len(trajectory)):
+            reward += np.linalg.norm(trajectory[i]-trajectory[i-1])
 
-    rr.log("Orignal Frame", rr.Image(original_image))
-    rr.log("First Frame", rr.Image(first_image))
-    rr.log("Last Frame", rr.Image(second_image))
+    return center, normal, reward, movement_vector
 
-    return centers, normals, rewards, movement_vector
-
-def roll_arc(self, center, normal, grasp_pose, original_frame, sam_tap, max_error=0.03, incrementation=0.01, max_length=0.15, method=1):
+def compute_arc_reward(self, center, normal, grasp_pose, max_error=0.03, incrementation=0.01, max_length=0.15, stay=False):
 
     original_position = self.mjdata.body("link_grasp_center").xpos.copy()
     initial_grasp = self.mjdata.actuator("gripper").length[0].copy()
 
-    arc_trajectory, center = Utils.generate_cylinder_trajectory(original_position, normal, center, incrementation, max_length)
+    arc_trajectory = generate_trajectory(original_position, normal, center, incrementation, max_length)
 
     # Visualiza Circle and Arc
     rot = Utils.rotation_matrix_to_align_with_vector(normal)
@@ -121,22 +83,11 @@ def roll_arc(self, center, normal, grasp_pose, original_frame, sam_tap, max_erro
     Utils.set_geom_cylinder_radius(self.mjmodel,"test_circle",np.linalg.norm(original_position-center))
     Utils.set_geom_pose(self.mjmodel,"test_norm",center+normal*0.02,None,self.args.debug)
     for traj_index in range(len(arc_trajectory)):
-        Utils.set_geom_pose(self.mjmodel,f"traj_{traj_index}",arc_trajectory[traj_index],None,self.args.debug)
-
-    Utils.sleep(10.0, self.args.debug)
-    Utils.set_geom_pose(self.mjmodel,"test_circle",np.array([100,100,100]),rot,self.args.debug)
-    Utils.set_geom_cylinder_radius(self.mjmodel,"test_circle",np.linalg.norm(original_position-center))
-    Utils.set_geom_pose(self.mjmodel,"test_norm",np.array([100,100,100]),None,self.args.debug)
-    for traj_index in range(len(arc_trajectory)):
-        Utils.set_geom_pose(self.mjmodel,f"traj_{traj_index}",np.array([100,100,100]),None,self.args.debug)
-
-
+        Utils.set_geom_pose(self.mjmodel,f"traj_{traj_index}",arc_trajectory[traj_index],None)
 
     length = 0.0
     error = 0.0
-
-    eef_trajectory = [original_position]
-    frames = [original_frame,get_frame(self,original_position)]
+    trajectory = [original_position]
 
     arc_index = 0
     while arc_index<len(arc_trajectory) and Manipulation.low_level.is_grasping(self) == True and error<max_error and length <= (max_length-incrementation) and (self.mjdata.actuator("gripper").length[0].copy()-initial_grasp)<0.005:
@@ -152,68 +103,51 @@ def roll_arc(self, center, normal, grasp_pose, original_frame, sam_tap, max_erro
         self.args.debug = debug_status
 
         current_position = self.mjdata.body("link_grasp_center").xpos.copy()
-        eef_trajectory.append(current_position)
-        frames.append(get_frame(self,current_position))
-
+        trajectory.append(current_position)
+        
         error = np.linalg.norm(new_position-current_position)
         Utils.print_debug(f"Error: {error}",self.args.debug) 
 
-
     final_position = self.mjdata.body("link_grasp_center").xpos.copy()
+    movement_vector = (final_position-original_position)
 
-    for position in eef_trajectory[::-1]:
-        debug_status = self.args.debug
-        self.args.debug = False
-        Manipulation.move_grasp(self,position,grasp_pose[0:3,0:3],2,False,False)
-        self.args.debug = debug_status
+    if stay==True:
+        for position in trajectory[::-1]:
+            debug_status = self.args.debug
+            self.args.debug = False
+            Manipulation.move_grasp(self,position,grasp_pose[0:3,0:3],2,False,False)
+            self.args.debug = debug_status
 
-    eef_trajectory = np.array(eef_trajectory)
+    trajectory = np.array(trajectory)
 
-    if sam_tap:
-        centers, normals, rewards, _, tracks = SAM2_Tapnet.compute_sam2_tapnet_reward(frames, 300)
-    else:
-        centers = []
-        normals = []
-        rewards = []
+    for traj_index in range(len(trajectory)):
+        Utils.set_geom_pose(self.mjmodel,f"test_{traj_index}",trajectory[traj_index],None)
 
-    center, _, normal = Utils.fit_circle_to_points(eef_trajectory)
+    c_fitted, _, normal = Utils.fit_circle_to_points(trajectory)
+    if c_fitted is None:
+        return None, None, None
+    
     # Visualiza Circle and Arc Actual
     rot = Utils.rotation_matrix_to_align_with_vector(normal)
-    Utils.set_geom_pose(self.mjmodel,"actual_circle",center,rot,self.args.debug)
-    Utils.set_geom_cylinder_radius(self.mjmodel,"actual_circle",np.linalg.norm(original_position-center))
-    Utils.set_geom_pose(self.mjmodel,"actual_norm",center+normal*0.02,None,self.args.debug)
-    reward = compute_movement_reward(eef_trajectory, frames, method=method)
+    Utils.set_geom_pose(self.mjmodel,"actual_circle",c_fitted,rot,self.args.debug)
+    Utils.set_geom_cylinder_radius(self.mjmodel,"actual_circle",np.linalg.norm(original_position-c_fitted))
+    Utils.set_geom_pose(self.mjmodel,"actual_norm",c_fitted+normal*0.02,None,self.args.debug)
 
-    centers.append(center)
-    normals.append(normal)
-    rewards.append(reward)
+    # reward = movement_vector[0]*movement_vector[0] + movement_vector[1]*movement_vector[1] + movement_vector[2]*movement_vector[2]
+    reward = 0.0
+    if len(trajectory) > 1:
+        for i in range(1,len(trajectory)):
+            reward += np.linalg.norm(trajectory[i]-trajectory[i-1])
 
-    first_points = tracks[0][:,1]
-    first_image = create_numpy_image(frames[1], first_points)
-    second_points = tracks[0][:,-1]
-    second_image = create_numpy_image(frames[-1], second_points)
-
-    rr.log("First Frame", rr.Image(first_image))
-    rr.log("Last Frame", rr.Image(second_image))
-
-    return centers, normals, rewards
-
+    return c_fitted, normal, reward
     
 
 def affordance(self, grasp_pose):
-
-    rr.init("Affordance", spawn=True)
-
-    Manipulation.move_joint_to(self,"arm",0.0)
-    time.sleep(2.0)
-    Manipulation.point_camera_to(self,grasp_pose[0:3,3])
-    time.sleep(2)
-    original_frame = get_frame(self,grasp_pose[0:3,3])
     
-    reset(self)
+    # reset(self)
 
-    vectors = [  np.array([0,1,0]), np.array([1,0,0]), np.array([-1,0,0]), np.array([0,-1,0]), np.array([0,0,1]), np.array([0,0,-1]) ]
-    vectors = [ np.array([-1,1,0]) , np.array([-1,0,0])  ]
+    vectors = [ np.array([1,0,0]), np.array([-1,0,0]), np.array([0,1,0]), np.array([0,-1,0]), np.array([0,0,1]), np.array([0,0,-1]) ]
+    # vectors = [ np.array([-1,0,0]), np.array([0,1,0])]
 
     pre_grasp_position = self.mjdata.body("link_grasp_center").xpos.copy()
     Manipulation.low_level.grasp(self)
@@ -221,13 +155,14 @@ def affordance(self, grasp_pose):
 
     post_grasp_position = self.mjdata.body("link_grasp_center").xpos.copy()
 
-    circle_sampler = Utils.CircleSampler()
-    cylinder_sampler = Utils.Cylinder_Sampler()
-    linear_sampler = Utils.LinearSampler()
+    circle_sampler = CircleSampler()
+    linear_sampler = LinearSampler()
 
     for vector in vectors:
 
+
         Manipulation.ungrasp(self)
+        Manipulation.point_camera_to(self,pre_grasp_position)
 
         debug_status = self.args.debug
         self.args.debug = False
@@ -236,11 +171,10 @@ def affordance(self, grasp_pose):
 
         Manipulation.grasp(self)
 
-        centers, normals, rewards, movement_vector = roll_vector(self, vector, grasp_pose, original_frame, sam_tap=True, max_error=0.05, incrementation=0.025, max_length=0.15)
-        for (center, normal, reward) in zip(centers, normals, rewards):
+        center, normal, reward, movement_vector = compute_vector_reward(self, vector, grasp_pose, max_error=0.05, incrementation=0.03, max_length=0.1)
+        if center is not None:
             circle_sampler.update(center, normal, reward)
-            cylinder_sampler.update(center, normal, reward)
-        linear_sampler.update(rewards[-1], movement_vector)
+        linear_sampler.update(reward, movement_vector)
 
     for _ in range(0,1):
 
@@ -255,15 +189,13 @@ def affordance(self, grasp_pose):
         Manipulation.grasp(self)
 
         vector = linear_sampler.sample()
-        centers, normals, rewards, movement_vector = roll_vector(self, vector, grasp_pose, original_frame, sam_tap=True, max_error=0.05, incrementation=0.025, max_length=0.15)
+        center, normal, reward, movement_vector = compute_vector_reward(self, vector, grasp_pose, max_error=0.06, incrementation=0.02, max_length=0.1)
 
-        for (center, normal, reward) in zip(centers, normals, rewards):
-            circle_sampler.update(center, normal, reward)
-            cylinder_sampler.update(center, normal, reward)
-        linear_sampler.update(rewards[-1], movement_vector)
+        circle_sampler.update(center, normal, reward)
+        linear_sampler.update(reward, movement_vector)
 
 
-    while True:
+    for i in range(0,2):
         
         Manipulation.ungrasp(self)
 
@@ -275,18 +207,161 @@ def affordance(self, grasp_pose):
         Manipulation.grasp(self)
 
         center, normal = circle_sampler.sample(post_grasp_position, delta_length=0.01, total_length=0.2)
-        center, normal = cylinder_sampler.sample()
-        centers, normals, rewards = roll_arc(self, center, normal, grasp_pose, original_frame, sam_tap=True, max_error=0.08, incrementation=0.02, max_length=0.3)
-        
-        for (center, normal, reward) in zip(centers, normals, rewards):
+        center, normal, reward = compute_arc_reward(self, center, normal, grasp_pose, max_error=0.08, incrementation=0.01, max_length=0.3)
+        if center is not None:
             circle_sampler.update(center, normal, reward)
-            cylinder_sampler.update(center, normal, reward)
+
+    # Final:
+
+    Manipulation.ungrasp(self)
+    Manipulation.point_camera_to(self,pre_grasp_position)
+    first_frame = get_frame(self)
+
+    debug_status = self.args.debug
+    self.args.debug = False
+    Manipulation.move_grasp(self,pre_grasp_position,grasp_pose[0:3,0:3],2,False,False)
+    self.args.debug = debug_status
+
+    Manipulation.grasp(self)
+
+    center, normal = circle_sampler.sample(post_grasp_position, delta_length=0.01, total_length=0.2)
+    center, normal, reward = compute_arc_reward(self, center, normal, grasp_pose, max_error=0.08, incrementation=0.01, max_length=0.3, stay=True)
+
+    Manipulation.point_camera_to(self,pre_grasp_position)
+    last_frame = get_frame(self)
+
+    return first_frame, last_frame
+
     
+
+    
+        
+
+class LinearSampler:
+
+    def __init__(self):
+        
+        self.centers = []
+        self.direction = []
+        self.rewards = []
+        self.total_rewards = [0,0,0,0,0,0]
+
+    def update(self, reward, vector):
+
+        vector = vector/np.linalg.norm(vector)
+
+        if vector[0]>0:
+            self.total_rewards[0] += reward*abs(vector[0])
+        else:
+            self.total_rewards[1] += reward*abs(vector[0])
+
+        if vector[1]>0:
+            self.total_rewards[2] += reward*abs(vector[1])
+        else:
+            self.total_rewards[3] += reward*abs(vector[1])
+
+        if vector[2]>0:
+            self.total_rewards[4] += reward*abs(vector[2])
+        else:
+            self.total_rewards[5] += reward*abs(vector[2])
+    
+    def sample(self):
+
+        vector = np.array([ self.total_rewards[0]-self.total_rewards[1] , self.total_rewards[2]-self.total_rewards[3] , self.total_rewards[4]-self.total_rewards[5] ])
+        vector_magnitude = np.linalg.norm(vector)
+        vector = vector/vector_magnitude
+
+        return vector
+
+    
+class CircleSampler:
+
+    def __init__(self):
+        self.centers = []
+        self.normals = []
+        self.rewards = []
+
+    def update(self, center, normal, reward):
+        self.centers.append(center)
+        self.normals.append(normal)
+        self.rewards.append(reward)
+            
+    def sample(self, original_position, delta_length=0.025, total_length=0.2):
+        
+        print(self.centers)
+        min_radius = min(np.linalg.norm(np.array(original_position) - np.array(center)) for center in self.centers)
+
+        if delta_length > min_radius:
+            delta_length = min_radius / 2.0
+        if total_length > 2 * np.pi * min_radius:
+            total_length = 2 * np.pi * min_radius / 2.0
+
+        num_steps = int(total_length / delta_length) + 1
+        weighted_trajectory = np.zeros((num_steps, 3))
+        total_reward = sum(self.rewards)
+        
+        for center, normal, reward in zip(self.centers, self.normals, self.rewards):
+            trajectory = np.array(generate_trajectory(original_position, normal, center, delta_length, total_length))
+            weighted_trajectory += trajectory * reward
+        
+        averaged_trajectory = weighted_trajectory / total_reward
+
+        c_fitted, r_fitted, normal = Utils.fit_circle_to_points(averaged_trajectory)
+
+        return c_fitted, normal
+    
+def generate_trajectory(start_point, normal_vector, circle_center, delta_length, total_length):
+    x0, y0, z0 = start_point
+    cx, cy, cz = circle_center
+    
+    # Calculate the normal vector and the vector from the circle center to the start point
+    n_vec = np.array(normal_vector) / np.linalg.norm(normal_vector)
+    r_vec = np.array([x0 - cx, y0 - cy, z0 - cz])
+    
+    # Project start_point onto the plane of the circle
+    distance_from_plane = np.dot(r_vec, n_vec)  # Distance from start_point to the plane
+    projection_on_plane = np.array(start_point) - distance_from_plane * n_vec
+
+    # Calculate the radius vector in the plane from the circle center to the projection
+    vec_from_center_to_projection = projection_on_plane - np.array(circle_center)
+    radius = np.linalg.norm(vec_from_center_to_projection)  # Distance from center to the projection
+    
+    # Correct the projection point to lie exactly on the circle
+    if not np.isclose(radius, 0):
+        vec_from_center_to_projection_normalized = vec_from_center_to_projection / radius
+        start_point_on_circle = np.array(circle_center) + vec_from_center_to_projection_normalized * radius
+    else:
+        raise ValueError("Starting point cannot coincide with the circle center.")
+
+    # New radius vector using the corrected start point
+    r_vec = start_point_on_circle - np.array(circle_center)
+    radius = np.linalg.norm(r_vec)  # Re-calculate radius after correction
+
+    # First orthogonal vector (in the plane of the circle)
+    u1 = r_vec / radius
+
+    # Second orthogonal vector (perpendicular to both normal and u1)
+    u2 = np.cross(n_vec, u1)
+    u2 = u2 / np.linalg.norm(u2)
+
+    # Angle increment per step
+    delta_theta = delta_length / radius
+
+    # Trajectory generation
+    trajectory = []
+    num_steps = int(total_length / delta_length)
+
+    for i in range(num_steps + 1):
+        theta = i * delta_theta
+        point = np.array(circle_center) + radius * (np.cos(theta) * u1 + np.sin(theta) * u2)
+        trajectory.append(point)
+
+    return trajectory
 
 def reset(self):
 
-    q = np.array([ 0.00000000, 0.00000000, 0.05335826, 0.00494873, -0.00087141, 0.99894166, 0.00007970, 0.00178841, -0.04596037, 0, 0, 0.50990128, 0.07738893, 0.07595047, 0.07723606, 0.07566633, -0.22209796, -0.43430982, -0.05816221, 0.01955896, 0.19552636, -0.00022914, -0.00010475, 0.19544104, 0.00000000, 0.00000000, 0.00000000, -0.00451851, 0.00009783])
-    # q = np.array([-0.00001880, 0.00000000, 0.05416444, 0.00050961, -0.00087150, 0.99842935, 0.00009639, 0.00178786, -0.05599665, 0, 0, 0.76072400, 0.09342424, 0.09249239, 0.09255225, 0.09356264, -0.36359575, -1.04146461, -0.49324822, 0.00809127, 0.08123380, 0.00256101, -0.04030883, 0.08120029, 0.00099282, -0.00234462, 0.00000000, -0.00451851, 0.00009783])
+    # q = np.array([ 0.00000000, 0.00000000, 0.05335826, 0.00494873, -0.00087141, 0.99894166, 0.00007970, 0.00178841, -0.04596037, 0, 0, 0.50990128, 0.07738893, 0.07595047, 0.07723606, 0.07566633, -0.22209796, -0.43430982, -0.05816221, 0.01955896, 0.19552636, -0.00022914, -0.00010475, 0.19544104, 0.00000000, 0.00000000, 0.00000000, -0.00451851, 0.00009783])
+    q = np.array([-0.00001880, 0.00000000, 0.05416444, 0.00050961, -0.00087150, 0.99842935, 0.00009639, 0.00178786, -0.05599665, 0, 0, 0.76072400, 0.09342424, 0.09249239, 0.09255225, 0.09356264, -0.36359575, -1.04146461, -0.49324822, 0.00809127, 0.08123380, 0.00256101, -0.04030883, 0.08120029, 0.00099282, -0.00234462, 0.00000000, -0.00451851, 0.00009783])
     # q = np.array([0.00000000, 0.10628421, 0.13789239, -0.00087139, 0.92922255, -0.00066401, 0.00166244, 0.36951622, 0, 0, 0.52022841, 0.08149477, 0.08006597, 0.08139197, 0.07993936, -0.78819279, -0.27537196, 0.36480256, 0.02001729, 0.19980054, -0.00022874, -0.00002526, 0.19975080, 0.00000000, 0.00000000, 0.00000000, -0.00451852, 0.00009783])
     
     joints_index = Manipulation.low_level.get_joints_indices(self)
@@ -296,43 +371,13 @@ def reset(self):
     self.mjdata.qpos = q
     Utils.sleep(1.0)
 
-# Methods
-# 1: EEF Movements
-# 2: SAM-2 Object Movement
-def compute_movement_reward(eef_trajectory, frames, method=1):
 
-    np.save("eef_trajectory.npy",eef_trajectory)
-    import pickle
-    with open('frames.pkl', 'wb') as file:
-        pickle.dump(frames, file)
-
-    reward = 0.0
-    if len(eef_trajectory) > 1:
-        for i in range(len(eef_trajectory)-1):
-            reward += np.linalg.norm(eef_trajectory[i+1]-eef_trajectory[i])
-
-    return reward
-
-def get_frame(self, position):
+def get_frame(self):
 
     Utils.print_debug("Getting Frame", self.args.debug)
-
-    Manipulation.point_camera_to(self,position)
-    Utils.sleep(1.0)
 
     self.camera_data = self.pull_camera_data()
 
     rgb = cv2.cvtColor(self.camera_data["cam_nav_rgb"], cv2.COLOR_BGR2RGB)
-    depth = self.camera_data["cam_nav_depth"]
-
-    camera_position = self.mjdata.camera("nav_camera_rgb").xpos[:3]
-    camera_orientation = self.mjdata.camera("nav_camera_rgb").xmat.reshape((3,3))
-    b2w_r = Utils.robotics_functions.quat2Mat([0, 1, 0, 0])
-    camera_orientation = np.matmul(camera_orientation, b2w_r)
-    pose = np.block([[camera_orientation.reshape((3,3)),camera_position.reshape((3,1))],[0,0,0,1]]).copy()
-    frame = Classes.Frame(rgb, depth, None, 320, 240, 318.49075719, 318.49075719, pose)
-
-    Utils.print_debug("Done Getting Frame", self.args.debug)
-
-    return frame
-
+    
+    return rgb

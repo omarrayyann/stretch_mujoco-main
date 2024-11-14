@@ -238,6 +238,62 @@
             <geom name="body_extent" type="box" size="0.39 0.31 0.15" rgba="0 1 0 0.2" contype="0" conaffinity="0"/>
         </body>
 
+
+
+
+
+    
+    <geom name="optimal_circle" type="cylinder" size="0.1 0.001 0.001" pos="100 100 0.001" rgba="0 1 0 0.3" contype="0" conaffinity="0"/>
+    <geom name="optimal_norm" type="sphere" size="0.01" pos="100 100 0.001" rgba="0 1 0 0.3"  contype="0" conaffinity="0"/>
+
+    <geom name="test_circle" type="cylinder" size="0.1 0.001 0.001" pos="100 100 0.001" rgba="0 0 1 0.3" contype="0" conaffinity="0"/>
+    <geom name="test_norm" type="sphere" size="0.01" pos="100 100 0.001" rgba="0 0 1 0.3"  contype="0" conaffinity="0"/>
+    
+    <geom name="actual_norm" type="sphere" size="0.01" pos="100 100 0.001" rgba="1 0 0 0.3"  contype="0" conaffinity="0"/>
+    <geom name="actual_circle" type="cylinder" size="0.1 0.001 0.001" pos="100 100 0.001" rgba="1 0 0 0.3" contype="0" conaffinity="0"/>
+    <geom name="best_circle" type="sphere" size="0.1 0.01 0.01"  pos="100 100 0.001" rgba="1 0 0 0.3" contype="0" conaffinity="0"/>
+
+    <geom name="traj_1" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_2" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_3" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_4" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_5" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_6" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_7" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_8" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_9" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_10" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_11" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_12" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_13" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_14" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_15" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_16" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_17" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_18" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_19" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_20" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+    <geom name="traj_21" type="sphere" size="0.02" pos="100 100 0.001" rgba="1 1 0 0.5" contype="0" conaffinity="0"/>
+
+
+
+
+
+    <geom name="test_1" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+    <geom name="test_2" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+    <geom name="test_3" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+    <geom name="test_4" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+    <geom name="test_5" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+    <geom name="test_6" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+    <geom name="test_7" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+    <geom name="test_8" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+    <geom name="test_9" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+    <geom name="test_10" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+    <geom name="test_11" type="sphere" size="0.02" pos="100 100 0.001" rgba="0.8 0.7 0.6 0.5" contype="0" conaffinity="0"/>
+
+
+
+
     <body name="grasping_head_0" pos="19 91 91">
       <geom name="center_0" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
       <geom name="cylinder_left_0" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>

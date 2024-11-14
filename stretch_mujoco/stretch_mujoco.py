@@ -10,13 +10,14 @@ import mujoco.viewer
 import cv2
 import numpy as np
 import os
-
+import matplotlib.pyplot as plt
 
 import Classes
 import Grasping
 import Manipulation
 import Locomotion
 import Path_Planning
+import Skills.affordance
 import Utils
 import Skills
 import GPT
@@ -141,16 +142,18 @@ class UntidyBotSimulator():
 
 
     def bot_work(self) -> None:
+
         print("Bot Work")
+        
         # if 1 or self.args.instruction:   
         #     print("Instruction")
         #     self.instruct(self.args.instruction)
         
         camera_intrinsics = {
-            'fx': 432.97146127,  # Focal length x
-            'fy':  577.2952816868556,  # Focal length y
-            'cx': 240,  # Principal point x
-            'cy': 320   # Principal point y
+            'fx': 432.97146127,         # Focal length x
+            'fy': 432.97146127,    # Focal length y
+            'cx': 240,                  # Principal point x
+            'cy': 320                   # Principal point y
         }
 
         end = (3.84091442 ,-0.60812156,  0.62934642)
@@ -160,121 +163,246 @@ class UntidyBotSimulator():
         object_count = 1
         handle_count = 1
 
-        global_positions = []
-        global_labels = []
+        Locomotion.orient_base_angle(self, 1.67, limit=0.01)
 
-        do = False
-        global_positions = np.load("global_positions.npy")
-        global_labels = np.load("global_labels.npy")
-
-        for i, angle in enumerate(range(10, 400, 15)):
-
-            if not do:
-                break
-
-            Locomotion.orient_base_angle(self, angle/180*np.pi, limit=0.01)
-            time.sleep(3.0)
-            
-            self.camera_data = self.pull_camera_data()
-            rgb = self.camera_data["cam_d435i_rgb"]
-            depth = self.camera_data["cam_d435i_depth"]
-            response = Perception.send_detection_request("localhost", 4000, "drawer. cabinet. handle.", rgb)
-   
-            if response:
-
-                if 'detections' in response:
-                    Utils.plot_detections(rgb, response['detections'])
-                    print("Detections:")
-                    for det in response['detections']:
-                        label = det['label']
-                        score = det['score']
-                        box = det['box']
-                        
-                        xmin, ymin, xmax, ymax = box
-                        u = (xmin + xmax) / 2.0
-                        v = (ymin + ymax) / 2.0
-
-                        u_int = int(round(u))
-                        v_int = int(round(v))
-
-                        u_int = np.clip(u_int, 0, depth.shape[1] - 1)
-                        v_int = np.clip(v_int, 0, depth.shape[0] - 1)
-                        depth_value = depth[v_int, u_int]
-                        if depth_value == 0 or np.isnan(depth_value):
-                            print("Invalid depth value at detection center, skipping this detection.")
-                            continue
-                        
-                        Z_cam = depth_value
-                        X_cam = (u - camera_intrinsics['cx']) * Z_cam / camera_intrinsics['fx']
-                        Y_cam = (v - camera_intrinsics['cy']) * Z_cam / camera_intrinsics['fy']
-                        
-                        camera_position = self.mjdata.camera("d435i_camera_rgb").xpos[:3]
-                        camera_orientation = self.mjdata.camera("d435i_camera_rgb").xmat.reshape((3, 3))
-                        position = camera_position + Z_cam*(camera_orientation@np.array([0, 0, -1])) + -Y_cam*(camera_orientation@np.array([-1, 0, 0])) + X_cam*(camera_orientation@np.array([0, 1, 0]))
-                        
-                        
-                        # if label == "handle":
-                        #     Utils.set_body_pose(self.mjmodel, f"handle_{handle_count}", position, None, self.args.debug)
-                        #     handle_count += 1
-                        # else:
-                        #     Utils.set_body_pose(self.mjmodel, f"object_{object_count}", position, None, self.args.debug)
-                        #     object_count += 1
-
-                        global_labels.append(label)
-                        global_positions.append(position)
-
-                else:
-                    print(f"Error from server: {response.get('error', 'Unknown error')}")
-            else:
-                print("No response received.")
-        if do:
-            np.save("global_positions.npy",np.array(global_positions))
-            np.save("global_labels.npy",np.array(global_labels))
-        
-        possible_positions = []
-
-        for i in range(len(global_positions)):
-            label = global_labels[i]
-            position = global_positions[i]
-
-            if position[2] > 0.8 or position[2] < 0.4:
-                continue
-            else:
-                possible_positions.append(position)
-                print(position)
-                
-            # if label == "handle":
-            #     Utils.set_body_pose(self.mjmodel, f"handle_{handle_count}", position, None, self.args.debug)
-            #     handle_count += 1
-            # else:
-            #     Utils.set_body_pose(self.mjmodel, f"object_{object_count}", position, None, self.args.debug)
-            #     object_count += 1
-
-            print(i)
-        
-        goal_position = possible_positions[4]
-
-        start_position = self.mjdata.body("base_link").xpos[:2].copy()
-        end_position = goal_position[0:2]
-
-        waypoints = Path_Planning.find_path(self, start_position, end_position)
-        for point in waypoints[1:]:
-            Locomotion.move_base_to(self, point)
-        
-        Locomotion.orient_base_position(self, goal_position)
-        Manipulation.point_camera_to(self, goal_position)
-        print("pulling camera")
         self.camera_data = self.pull_camera_data()
         rgb = self.camera_data["cam_d435i_rgb"]
         depth = self.camera_data["cam_d435i_depth"]
 
-        np.save("rgb.npy",rgb)
-        np.save("depth.npy",depth)
+        
 
-        response = Perception.stretch_open.get_inference_results("localhost", 5000, rgb, depth)
+        points = Perception.get_points(rgb, "Find me the location of points that I can grasp in the scene using a robot paralell gripper.", host='localhost', port=8080)
+        global_positions = []
+        
+        for i, point in enumerate(points):
 
-        print(response)
+            u, v = point
+            u_int = int(round(u))
+            v_int = int(round(v))
+            u_int = np.clip(u_int, 0, depth.shape[1] - 1)
+            v_int = np.clip(v_int, 0, depth.shape[0] - 1)
+            depth_value = depth[v_int, u_int]
+            if depth_value == 0 or np.isnan(depth_value):
+                print("Invalid depth value at detection center, skipping this detection.")
+                continue
+            Z_cam = depth_value
+            X_cam = (u - camera_intrinsics['cx']) * Z_cam / camera_intrinsics['fx']
+            Y_cam = (v - camera_intrinsics['cy']) * Z_cam / camera_intrinsics['fy']
+            camera_position = self.mjdata.camera("d435i_camera_rgb").xpos[:3]
+            camera_orientation = self.mjdata.camera("d435i_camera_rgb").xmat.reshape((3, 3))
+            position = camera_position + Z_cam*(camera_orientation@np.array([0, 0, -1])) + -Y_cam*(camera_orientation@np.array([-1, 0, 0])) + X_cam*(camera_orientation@np.array([0, 1, 0]))
+            
+            if position[2] > 0.8 or position[2] < 0.4:
+                continue
+            
+            waypoints = Path_Planning.find_path(self, start, position)
+            for point in waypoints[1:]:
+                Locomotion.move_base_to(self, point)
+            Locomotion.orient_base_position(self, position)
+            Manipulation.point_camera_to(self, position)
+            time.sleep(5)
+            self.camera_data = self.pull_camera_data()
+            rgb = self.camera_data["cam_d435i_rgb"]
+            depth = self.camera_data["cam_d435i_depth"]
 
+            new_points = Perception.get_points(rgb.copy(), "Find me the location of points that I can grasp in the scene using a robot paralell gripper.", host='localhost', port=8080)
+            closest_position = None
+
+            for point in new_points:
+                u, v = point
+                u_int = int(round(u))
+                v_int = int(round(v))
+                u_int = np.clip(u_int, 0, depth.shape[1] - 1)
+                v_int = np.clip(v_int, 0, depth.shape[0] - 1)
+                depth_value = depth[v_int, u_int]
+                if depth_value == 0 or np.isnan(depth_value):
+                    print("Invalid depth value at detection center, skipping this detection.")
+                    continue
+                Z_cam = depth_value
+                X_cam = (u - camera_intrinsics['cx']) * Z_cam / camera_intrinsics['fx']
+                Y_cam = (v - camera_intrinsics['cy']) * Z_cam / camera_intrinsics['fy']
+                camera_position = self.mjdata.camera("d435i_camera_rgb").xpos[:3]
+                camera_orientation = self.mjdata.camera("d435i_camera_rgb").xmat.reshape((3, 3))
+                new_position = camera_position + Z_cam*(camera_orientation@np.array([0, 0, -1])) + -Y_cam*(camera_orientation@np.array([-1, 0, 0])) + X_cam*(camera_orientation@np.array([0, 1, 0]))
+                if closest_position is None or np.linalg.norm(new_position - position) < np.linalg.norm(closest_position - position):
+                    closest_position = new_position
+
+            position = closest_position
+
+            Utils.set_body_pose(self.mjmodel, f"handle_0", position, None, self.args.debug)
+
+            Manipulation.point_camera_to(self, position)
+
+            print("Getting grasps")
+
+            # Get the dimensions of the image
+            height, width = depth.shape
+
+            # Calculate the radius as 50% of the width
+            radius = width // 2
+
+            # Calculate the center coordinates of the image
+            center_y, center_x = height // 2, width // 2
+
+            # Create an index grid for the image
+            y, x = np.ogrid[:height, :width]
+
+            # Calculate the distance from the center for each point
+            distance_from_center = np.sqrt((x - center_x) ** 2 + (y - center_y) ** 2)
+
+            # Apply the mask directly, setting values outside the circle to 0
+            depth[distance_from_center > radius] = 0
+
+
+
+            # grasp_poses, grasp_scores, grasp_widths = Grasping.get_grasps(rgb, depth)
+
+            # print("Grasps: ", grasp_poses)
+
+            # optimal_grasp_pose = None
+            # Utils.sleep(5)
+
+            # for i, grasp_pose in enumerate(grasp_poses):
+            #     grasp_world_frame = Utils.camera_to_world_frame(self.mjdata, "d435i_camera_rgb", grasp_pose)
+            #     if optimal_grasp_pose is None or np.linalg.norm(grasp_world_frame[0:3, 3] - position) < np.linalg.norm(optimal_grasp_pose[0:3, 3] - position):
+            #         optimal_grasp_pose = grasp_world_frame
+
+            #     Utils.set_body_pose(self.mjmodel, f"grasping_head_{i+1}", grasp_world_frame[0:3, 3], grasp_world_frame[0:3, 0:3], self.args.debug)
+            # Utils.set_body_pose(self.mjmodel, f"grasping_head_1", optimal_grasp_pose[0:3, 3], optimal_grasp_pose[0:3, 0:3], self.args.debug)
+
+            optimal_grasp_pose = np.array([
+                [1, 0, 0, position[0]],
+                [0, 0, 1, position[1]],
+                [0, -1, 0, position[2]],
+                [0, 0, 0, 1]
+
+            ])
+
+
+            Locomotion.orient_base_grasp(self,optimal_grasp_pose[0:3,3])
+
+            
+            # for i in range(len(grasp_poses)):
+            #     Utils.set_body_pose(self.mjmodel, f"grasping_head_{i+1}", np.array([100,100,100]), None)
+            
+
+            # optimal_grasp_pose = np.identity(4)
+            # optimal_grasp_pose[0:3,3] = position
+            # optimal_grasp_pose[0:3,0:3] = camera_orientation
+            Manipulation.move_joint_to_timed(self,"lift",0.5,5)
+            Manipulation.ungrasp(self)
+
+
+            trajectory_positions, extra_pos = Utils.get_trajectory_steps(optimal_grasp_pose,self.args.trajectory_steps,self.args.trajectory_length,deep=0.02)
+            for i, trajectory_position in enumerate(trajectory_positions):
+                Utils.set_body_pose(self.mjmodel,"grasping_head",trajectory_position,optimal_grasp_pose[0:3,0:3])
+                Manipulation.move_grasp(self,trajectory_position,optimal_grasp_pose[0:3,0:3],2,lift_arm_first=i==0,move_first=i==0)
+                Utils.sleep(0.1)
+            Utils.sleep(1)
+
+
+            Manipulation.grasp(self)
+
+            first_frame, last_frame = Skills.affordance.affordance(self,optimal_grasp_pose)
+
+            np.save("first_frame.npy",first_frame)
+            np.save("last_frame.npy",last_frame)
+
+
+            plt.figure()
+            plt.imshow(first_frame)
+            plt.show()
+            plt.figure()
+            plt.imshow(last_frame)
+            plt.show()
+
+
+
+
+
+            
+            global_positions.append(position)
+
+        # for i in range(20):
+        #     Utils.set_body_pose(self.mjmodel, f"handle_{i+1}", [0,0,0], None, self.args.debug)
+        
+        for position in global_positions:
+            if position[2] > 0.8 or position[2] < 0.4:
+                continue
+            waypoints = Path_Planning.find_path(self, start, position)
+            for point in waypoints[1:]:
+                Locomotion.move_base_to(self, point)
+            Locomotion.orient_base_position(self, position)
+            Manipulation.point_camera_to(self, position)
+            time.sleep(5)
+            self.camera_data = self.pull_camera_data()
+            rgb = self.camera_data["cam_d435i_rgb"]
+            depth = self.camera_data["cam_d435i_depth"]
+
+
+
+
+            height, width = depth.shape
+
+            # Calculate the center and radius of the circle
+            center_x, center_y = width // 2, height // 2
+            radius = 100  # 200 pixels in diameter means 100 pixels in radius
+
+            # Create a mask of zeros with the same shape as depth
+            mask = np.zeros_like(depth, dtype=np.uint8)
+
+            # Draw a filled circle on the mask with value 1 inside the circular area
+            cv2.circle(mask, (center_x, center_y), radius, 1, -1)
+
+            # Set all points outside the circle to 0 by multiplying the depth with the mask
+            depth = depth * mask
+
+
+
+
+            points = Perception.get_points(rgb.copy(), "Find me the location of points that I can hold to open a cabinet.", host='localhost', port=8080)
+            
+            for point in points:
+                u, v = point
+                u_int = int(round(u))
+                v_int = int(round(v))
+                u_int = np.clip(u_int, 0, depth.shape[1] - 1)
+                v_int = np.clip(v_int, 0, depth.shape[0] - 1)
+                depth_value = depth[v_int, u_int]
+                if depth_value == 0 or np.isnan(depth_value):
+                    print("Invalid depth value at detection center, skipping this detection.")
+                    continue
+                Z_cam = depth_value
+                X_cam = (u - camera_intrinsics['cx']) * Z_cam / camera_intrinsics['fx']
+                Y_cam = (v - camera_intrinsics['cy']) * Z_cam / camera_intrinsics['fy']
+                camera_position = self.mjdata.camera("d435i_camera_rgb").xpos[:3]
+                camera_orientation = self.mjdata.camera("d435i_camera_rgb").xmat.reshape((3, 3))
+                position = camera_position + Z_cam*(camera_orientation@np.array([0, 0, -1])) + -Y_cam*(camera_orientation@np.array([-1, 0, 0])) + X_cam*(camera_orientation@np.array([0, 1, 0]))
+                Utils.set_body_pose(self.mjmodel, f"handle_{1}", position, None, self.args.debug)
+                Utils.sleep(2,True)
+                Utils.set_body_pose(self.mjmodel, f"handle_{1}", [0,0,0], None, self.args.debug)
+                print(rgb.shape)
+                grasp_poses, grasp_scores, grasp_widths = Grasping.get_grasps(rgb, depth)
+                print("poses: ", grasp_poses)
+                grasp_poses = grasp_poses.copy()
+                grasp_poses_test = grasp_poses.copy()
+
+                if len(grasp_poses) > 0:
+                    
+                    print("FIRST")
+                    for i in range(len(grasp_poses)):
+                        # grasp_world_pose = Utils.camera_to_world_frame(self.mjdata,"d435i_camera_rgb",grasp_poses[i])
+
+                          
+                        camera_position = self.mjdata.camera("d435i_camera_rgb").xpos[:3]
+                        camera_orientation = self.mjdata.camera("d435i_camera_rgb").xmat.reshape((3, 3))
+                        position = camera_position + grasp_poses[i][2,3]*(camera_orientation@np.array([0, 0, -1])) + -grasp_poses[i][1,3]*(camera_orientation@np.array([-1, 0, 0])) + grasp_poses[i][0,3]*(camera_orientation@np.array([0, 1, 0]))
+
+                        
+                        grasp_poses_test[i][0:3,3] = position
+
+                  
+                    Utils.sleep(10,self.args.debug)
 
 
     def instruct(self, instruction):

@@ -7,7 +7,7 @@ from PIL import Image
 from gsnet import AnyGrasp
 from graspnetAPI import GraspGroup
 from PIL import Image
-from lang_sam import LangSAM
+# from lang_sam import LangSAM
 import gc
 
 torch.set_grad_enabled(False)
@@ -33,38 +33,8 @@ def get_args():
     return cfgs
 
 
-def anygrasp_detection(colors, depths, prompt_string):
+def anygrasp_detection(colors, depths):
     
-    torch.cuda.empty_cache()
-    print(1)
-    model = LangSAM(sam_type='vit_b')
-    print(2)
-    colors_int = (colors * 255).astype(np.uint8).reshape((640, 480, 3))
-    print(colors_int.shape)
-    image_pil =  Image.fromarray(colors_int)
-    masks, boxes, phrases, logits = model.predict(image_pil, prompt_string)
-    print(masks.shape)
-    np.save("masks.npy",masks)
-
-    # Reshape the input color data into image format
-    # colors_int = (colors * 255).astype(np.uint8).reshape((640, 480, 3))
-    # print(colors_int.shape)
-
-    # Create a PIL image from the reshaped array (if needed for visualization)
-    # image_pil = Image.fromarray(colors_int)
-    # img_height, img_width = colors_int.shape[:2]
-    # square_size_width = img_width // 4
-    # square_size_height = img_height // 4
-    # mask = np.zeros((img_height, img_width), dtype=np.uint8)
-    # top_left_x = (img_width - square_size_width) // 4
-    # top_left_y = (img_height - square_size_height) // 4
-    # bottom_right_x = top_left_x + square_size_width
-    # bottom_right_y = top_left_y + square_size_height
-    # mask[top_left_y:bottom_right_y, top_left_x:bottom_right_x] = 1
-    # print(mask.shape)
-    # masks = [mask]
-    # np.save("masks.npy", mask)
-
     
     torch.cuda.empty_cache()
     cfgs = get_args()
@@ -79,67 +49,13 @@ def anygrasp_detection(colors, depths, prompt_string):
     
     print("Colors: ", colors)
     # get camera intrinsics
-    fx, fy = 432.97146127, 432.97146127
+    fx, fy = 432.97146127, 577.2952
     cx, cy = 240, 320
     scale = 1000.0
     # set workspace to filter output grasps
-    xmin, xmax = -0.19, 0.2
-    ymin, ymax = 0.02, 0.15
-    zmin, zmax = 0.0, 1.0
-    
-
-    min_x = 100000
-    max_x = -100000
-    min_y = 100000
-    max_y = -1000000
-    min_z = 100000
-    max_z = -1000000
-
-   
-    for r in range(len(colors)):
-        for c in range(len(colors[r])):
-            for mask_current in masks:
-                if mask_current[r,c] == 1:
-                    point_z = depths[r,c] / scale
-                    point_x = (c - cx) / fx * point_z
-                    point_y = (r - cy) / fy * point_z
-                
-                    min_x = min(min_x,point_x)
-                    max_x = max(max_x,point_x)
-
-                    min_y = min(min_y,point_y)
-                    max_y = max(max_y,point_y)
-
-                    min_z = min(min_z,point_z)
-                    max_z = max(max_z,point_z)
-                
-    # Find min and max for x and y separately
-    tol = 0.1
-
-    if min_x>max_x:
-        min_x = -10000
-        max_x = 100000
-
-    if min_y>max_y:
-        min_y = -10000
-        max_y = 10000
-
-    if min_z>max_z:
-        min_z = -10000
-        max_z = 10000
-
-    xmin, xmax = min_x-tol, max_x+tol
-    ymin, ymax = min_y-tol, max_y+tol
-    zmin, zmax = min_z-tol, max_z+tol
-
-    lims = [-1000000, 1000000, -1000000, 1000000, -1000000, 1000000 ]
-    lims = [xmin, xmax, ymin, ymax, zmin, zmax]
-
-    print("lims: ", lims)
-
-    np.save("depth.npy",depths)
-    np.save("rgb.npy",colors)
-
+    xmin, xmax = -1, 1
+    ymin, ymax = -1, 1
+    zmin, zmax = -1, 1
     
     # get point cloud
     xmap, ymap = np.arange(depths.shape[1]), np.arange(depths.shape[0])
@@ -154,12 +70,10 @@ def anygrasp_detection(colors, depths, prompt_string):
     points = np.stack([points_x, points_y, points_z], axis=-1)
     points = points[mask].astype(np.float32)
     colors = colors[mask].astype(np.float32)
-    print(points.min(axis=0), points.max(axis=0))
 
-    print("cikirs: ", colors)
 
     colors = colors/255.0
-    gg, cloud = anygrasp.get_grasp(points, colors, lims=lims, apply_object_mask=True, dense_grasp=False, collision_detection=True)
+    gg, cloud = anygrasp.get_grasp(points, colors, apply_object_mask=True, dense_grasp=False, collision_detection=True)
 
     if len(gg) == 0:
         print('No Grasp detected after collision detection!')
@@ -192,23 +106,13 @@ def anygrasp_detection(colors, depths, prompt_string):
     for gripper in grippers:
         gripper.transform(trans_mat)
     
-    # Save point cloud and grippers
-    # o3d.io.write_point_cloud("output/cloud.ply", cloud)
-    # for i, gripper in enumerate(grippers):
-    #     o3d.io.write_triangle_mesh(f"output/gripper_{i}.ply", gripper)
-
-
-    # o3d.visualization.draw_geometries([*grippers, cloud])
-    # o3d.visualization.draw_geometries([grippers[0], cloud])
-
-    # Serialize the grasp poses and scores
     grasp_poses = np.array(grasp_poses, dtype=np.float32)
     grasp_scores = np.array(grasp_scores, dtype=np.float32)
     grasp_widths = np.array(grasp_widths, dtype=np.float32)
-    langsam_mask = np.array(masks, dtype=bool)
+    # langsam_mask = np.array(masks, dtype=bool)
 
     del anygrasp, colors, depths
     torch.cuda.empty_cache()
     gc.collect()
 
-    return grasp_poses, grasp_scores, grasp_widths, np.array(masks)
+    return grasp_poses, grasp_scores, grasp_widths
