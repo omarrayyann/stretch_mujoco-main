@@ -1,3 +1,11 @@
+
+# Quick RL Affordance Finder
+
+https://github.com/user-attachments/assets/2afef248-ed96-4459-be93-9de7a9431001
+
+https://github.com/user-attachments/assets/a8d502a7-0ab2-4c29-bfda-cc42c33e015c
+
+
 # Stretch Mujoco
 
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-31012/)
