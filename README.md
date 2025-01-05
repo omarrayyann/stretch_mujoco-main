@@ -1,5 +1,11 @@
 # AnyGrasp + LangSAM + ConceptGraph + A* + LLM
 
+
+https://github.com/user-attachments/assets/966da42d-a5fd-4ee2-810d-0107e11b122f
+
+
+In Robocasa:
+    
 https://github.com/user-attachments/assets/7955835b-279d-4ab6-804d-0796cbd71932
 
 # Quick RL Affordance Finder
